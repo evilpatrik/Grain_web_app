@@ -50,6 +50,76 @@ body {
     font-family: Arial, sans-serif; /* فونت استاندارد */
     text-align: center;
 }
+/* استایل فیلد ورودی نام کاربری */
+.username-field {
+    position: absolute;
+    top: 48%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 240px; /* عرض کادر */
+    height: 17px; /* ارتفاع کادر */
+    background: transparent; /* پس‌زمینه شفاف */
+    border: 2px solid #FFEC9E; /* حاشیه رنگی */
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+    padding: 10px;
+    font-size: 16px;
+    color: #FFEC9E; /* رنگ متن ورودی */
+    text-align: center;
+    outline: none; /* حذف خط دور هنگام کلیک */
+}
+/* تغییر رنگ متن داخل کادر هنگام تایپ */
+.username-field::placeholder {
+    color: #FFEC9E; /* رنگ متن پیش‌فرض */
+    opacity: 0.7;
+}
+
+/* استایل فیلد ورودی رمز ورود */
+.password-field {
+    position: absolute;
+    top: 55%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 240px; /* عرض کادر */
+    height: 17px; /* ارتفاع کادر */
+    background: transparent; /* پس‌زمینه شفاف */
+    border: 2px solid #FFEC9E; /* حاشیه رنگی */
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+    padding: 10px;
+    font-size: 16px;
+    color: #FFEC9E; /* رنگ متن ورودی */
+    text-align: center;
+    outline: none; /* حذف خط دور هنگام کلیک */
+}
+/* تغییر رنگ متن داخل کادر هنگام تایپ */
+.password-field::placeholder {
+    color: #FFEC9E; /* رنگ متن پیش‌فرض */
+    opacity: 0.7;
+}
+
+/* استایل دکمه ورود */
+.login-button {
+    position: absolute;
+    top: 65%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 270px; /* عرض دکمه */
+    height: 40px; /* ارتفاع دکمه */
+    background: #FFFBDA; /* رنگ پس‌زمینه */
+    border: none; /* حذف حاشیه پیش‌فرض */
+    border-radius: 20px; /* گوشه‌های گرد */
+    font-size: 18px; /* اندازه فونت */
+    color: #ED9455; /* رنگ متن */
+    font-weight: bold; /* ضخامت فونت */
+    cursor: pointer; /* تغییر نشانگر موس */
+    transition: 0.3s; /* افکت تغییر رنگ */
+}
+
+/* تغییر استایل دکمه هنگام هاور */
+.login-button:hover {
+    background: #ED9455; /* رنگ پس‌زمینه هنگام هاور */
+    color: #FFFBDA; /* رنگ متن هنگام هاور */
+}
+
 
 
 
