@@ -1,3 +1,31 @@
-body{
-    background-color: blue;
+/* تنظیم عکس پس‌زمینه */
+body {
+    background: url('/Frontend/images/Background.png') no-repeat center center fixed; 
+    background-size: cover; /* تنظیم اندازه برای پوشش کل صفحه */
+    margin: 0;
+    height: 100vh; /* پوشش کل صفحه */
 }
+
+/* استایل متن خوش آمدید */
+.welcome-text {
+    color: #FFBB70; /* رنگ متن */
+    font-size: 60px;
+    text-align: center;
+    font-family: Arial, sans-serif; /* فونت استاندارد */
+    position: absolute;
+    top: 10%;
+    left: 77%;
+    transform: translateX(-50%);
+}
+/* خط زیر خوش آمدید */
+.underline {
+    position: absolute;
+    top: 24%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 237px; /* طول خط */
+    height: 1px; /* ضخامت خط */
+    background-color: #FFFBDA; /* رنگ خط */
+    border-radius: 2px; /* کمی گردی برای زیبایی */
+}
+
