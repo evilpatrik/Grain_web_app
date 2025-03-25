@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صفحه لاگین</title>
     <link rel="stylesheet" href="Login.css">
+    <script src="Login.js"></script>
 </head>
 <body>
     <h1 class="welcome-text">خوش آمدید</h1>
@@ -12,10 +13,12 @@
     <p class="sub-text">به سیستم مدیریت خرید و فروش غلات</p>
     <p class="info-text">لطفا نام کاربری و رمز ورود را وارد کنید</p>
     <!-- کادر نام کاربری -->
-    <input type="text" class="username-field" placeholder="نام کاربری">
+    <input type="text" id="username" class="username-field" placeholder="نام کاربری">
     <!-- کادر رمز ورود -->
-    <input type="password" class="password-field" placeholder="رمز ورود">
+    <input type="password" id="password" class="password-field" placeholder="رمز ورود">
     <!-- دکمه ورود -->
-    <button class="login-button">ورود</button>
+    <button class="login-button" onclick="login()">ورود</button>
+    <!-- نمایش پیام خطا -->
+    <p id="error-message" class="error-message"></p>
 </body>
 </html>

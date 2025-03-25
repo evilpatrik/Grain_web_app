@@ -121,5 +121,16 @@ body {
 }
 
 
+/* استایل پیام خطا */
+.error-message {
+    position: absolute;
+    top: 75%;
+    left: 77%;
+    transform: translateX(-50%);
+    color: rgb(255, 72, 72);
+    font-size: 16px;
+    font-weight: bold;
+}
+
 
 
