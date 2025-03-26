@@ -1,27 +1,36 @@
-{% extends "base.html" %}
-
-{% block title %}Login{% endblock %}
-
-{% block content %}
-<div class="auth-container">
-    <h2 class="auth-title">Login</h2>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه لاگین</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <h1 class="welcome-text">خوش آمدید</h1>
+    <div class="underline"></div>
+    <p class="sub-text">به سیستم مدیریت خرید و فروش غلات</p>
+    <p class="info-text">لطفا نام کاربری و رمز ورود را وارد کنید</p>
+    
+    <!-- Display flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
         {% endif %}
     {% endwith %}
+    
+    <!-- فرم ورود -->
     <form method="POST" action="{{ url_for('auth.login') }}">
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <!-- کادر نام کاربری -->
+        <input type="text" class="username-field" name="username" placeholder="نام کاربری" required>
+        <!-- کادر رمز ورود -->
+        <input type="password" class="password-field" name="password" placeholder="رمز ورود" required>
+        <!-- دکمه ورود -->
+        <button type="submit" class="login-button">ورود</button>
     </form>
-</div>
-{% endblock %}
+</body>
+</html>

@@ -31,6 +31,24 @@ def manager_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'role' not in session or session['role'] != 'admin':
+            flash('Admin access required.', 'danger')
+            return redirect(url_for('auth.login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+def manager_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'role' not in session or session['role'] != 'manager':
+            flash('Manager access required.', 'danger')
+            return redirect(url_for('auth.login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -50,7 +68,7 @@ def login():
             else:
                 return redirect(url_for('auth.employee_dashboard'))
         else:
-            flash('Invalid username or password', 'danger')
+            flash('نام کاربری یا رمز عبور اشتباه است', 'danger')
 
     return render_template('login.html')
 
@@ -66,9 +84,6 @@ def register_manager():
         flash('Username already exists!', 'danger')
         return redirect(url_for('auth.admin_dashboard'))
 
-    new_user = User(username=username, role='manager')
-    new_user.set_password(password)
-    db.session.add(new_user)
     db.session.commit()
     
     flash('Manager registered successfully!', 'success')

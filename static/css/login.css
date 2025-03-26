@@ -1,6 +1,6 @@
 /* تنظیم عکس پس‌زمینه */
 body {
-    background: url('/Frontend/images/Background.png') no-repeat center center fixed; 
+    background: url('/static/images/Background.png') no-repeat center center fixed; 
     background-size: cover; /* تنظیم اندازه برای پوشش کل صفحه */
     margin: 0;
     height: 100vh; /* پوشش کل صفحه */
