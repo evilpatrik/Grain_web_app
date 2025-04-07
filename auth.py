@@ -83,7 +83,9 @@ def register_manager():
     if existing_user:
         flash('Username already exists!', 'danger')
         return redirect(url_for('auth.admin_dashboard'))
-
+    new_user = User(username=username, role='manager')
+    new_user.set_password(password)
+    db.session.add(new_user)
     db.session.commit()
     
     flash('Manager registered successfully!', 'success')
