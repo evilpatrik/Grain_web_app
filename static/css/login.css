@@ -1,0 +1,125 @@
+/* تنظیم عکس پس‌زمینه */
+body {
+    background: url('/static/images/Background.png') no-repeat center center fixed; 
+    background-size: cover; /* تنظیم اندازه برای پوشش کل صفحه */
+    margin: 0;
+    height: 100vh; /* پوشش کل صفحه */
+}
+
+/* استایل متن خوش آمدید */
+.welcome-text {
+    color: #FFBB70; /* رنگ متن */
+    font-size: 60px;
+    text-align: center;
+    font-family: Arial, sans-serif; /* فونت استاندارد */
+    position: absolute;
+    top: 10%;
+    left: 77%;
+    transform: translateX(-50%);
+}
+/* خط زیر خوش آمدید */
+.underline {
+    position: absolute;
+    top: 24%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 237px; /* طول خط */
+    height: 1px; /* ضخامت خط */
+    background-color: #FFFBDA; /* رنگ خط */
+    border-radius: 2px; /* کمی گردی برای زیبایی */
+}
+/* استایل متن زیر خط */
+.sub-text {
+    position: absolute;
+    top: 22%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    color: #FFFBDA; /* رنگ متن */
+    font-size: 18px; /* اندازه کوچکتر از "خوش آمدید" */
+    font-family: Arial, sans-serif; /* فونت استاندارد */
+    text-align: center;
+}
+/* استایل متن راهنما */
+.info-text {
+    position: absolute;
+    top: 40%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    color: #FFBB70; /* رنگ متن */
+    font-size: 18px; /* اندازه کوچک‌تر */
+    font-family: Arial, sans-serif; /* فونت استاندارد */
+    text-align: center;
+}
+/* استایل فیلد ورودی نام کاربری */
+.username-field {
+    position: absolute;
+    top: 48%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 240px; /* عرض کادر */
+    height: 17px; /* ارتفاع کادر */
+    background: transparent; /* پس‌زمینه شفاف */
+    border: 2px solid #FFEC9E; /* حاشیه رنگی */
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+    padding: 10px;
+    font-size: 16px;
+    color: #FFEC9E; /* رنگ متن ورودی */
+    text-align: center;
+    outline: none; /* حذف خط دور هنگام کلیک */
+}
+/* تغییر رنگ متن داخل کادر هنگام تایپ */
+.username-field::placeholder {
+    color: #FFEC9E; /* رنگ متن پیش‌فرض */
+    opacity: 0.7;
+}
+
+/* استایل فیلد ورودی رمز ورود */
+.password-field {
+    position: absolute;
+    top: 55%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 240px; /* عرض کادر */
+    height: 17px; /* ارتفاع کادر */
+    background: transparent; /* پس‌زمینه شفاف */
+    border: 2px solid #FFEC9E; /* حاشیه رنگی */
+    border-radius: 10px; /* گرد کردن گوشه‌ها */
+    padding: 10px;
+    font-size: 16px;
+    color: #FFEC9E; /* رنگ متن ورودی */
+    text-align: center;
+    outline: none; /* حذف خط دور هنگام کلیک */
+}
+/* تغییر رنگ متن داخل کادر هنگام تایپ */
+.password-field::placeholder {
+    color: #FFEC9E; /* رنگ متن پیش‌فرض */
+    opacity: 0.7;
+}
+
+/* استایل دکمه ورود */
+.login-button {
+    position: absolute;
+    top: 65%; /* تنظیم فاصله از بالا */
+    left: 77%;
+    transform: translateX(-50%);
+    width: 270px; /* عرض دکمه */
+    height: 40px; /* ارتفاع دکمه */
+    background: #FFFBDA; /* رنگ پس‌زمینه */
+    border: none; /* حذف حاشیه پیش‌فرض */
+    border-radius: 20px; /* گوشه‌های گرد */
+    font-size: 18px; /* اندازه فونت */
+    color: #ED9455; /* رنگ متن */
+    font-weight: bold; /* ضخامت فونت */
+    cursor: pointer; /* تغییر نشانگر موس */
+    transition: 0.3s; /* افکت تغییر رنگ */
+}
+
+/* تغییر استایل دکمه هنگام هاور */
+.login-button:hover {
+    background: #ED9455; /* رنگ پس‌زمینه هنگام هاور */
+    color: #FFFBDA; /* رنگ متن هنگام هاور */
+}
+
+
+
+
