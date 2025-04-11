@@ -15,22 +15,40 @@
     <!-- Display flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <ul class="flashes">
+            <div class="flashes">
                 {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
+                    <div class="flash-message {{ category }}">{{ message }}</div>
                 {% endfor %}
-            </ul>
+            </div>
         {% endif %}
     {% endwith %}
     
     <!-- فرم ورود -->
     <form method="POST" action="{{ url_for('auth.login') }}">
         <!-- کادر نام کاربری -->
-        <input type="text" class="username-field" name="username" placeholder="نام کاربری" required>
+        <input type="text" class="username-field" name="username" placeholder="نام کاربری" required maxlength="12">
         <!-- کادر رمز ورود -->
         <input type="password" class="password-field" name="password" placeholder="رمز ورود" required>
         <!-- دکمه ورود -->
         <button type="submit" class="login-button">ورود</button>
     </form>
+
+
+
+
+    <!-- اسکریپت حذف خودکار پیام‌ها -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          const flashMessages = document.querySelectorAll('.flash-message');
+          flashMessages.forEach(msg => {
+            setTimeout(() => {
+              msg.style.transition = 'opacity 0.5s ease';
+              msg.style.opacity = '0';
+              setTimeout(() => msg.remove(), 500);
+            }, 2500);
+          });
+        });
+    </script>
+
 </body>
 </html>

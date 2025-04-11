@@ -120,6 +120,12 @@ body {
     color: #FFFBDA; /* رنگ متن هنگام هاور */
 }
 
-
+.flashes{
+    color:red;
+    position:absolute;
+    font-weight: bold;
+    top: 80%;
+    left:70%;
+}
 
 
