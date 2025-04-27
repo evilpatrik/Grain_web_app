@@ -1,4 +1,30 @@
-token.txt
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database files
+*.sqlite3
+*.db
+
+
+.gitignore
+
+# Flask instance folder
+instance/
+
 token
+token.txt
 token.pub
-__pycache__
+venv/
+ENV/
+env/
+.venv/
+
+
+.vscode/
+
+
+
+
+
