@@ -7,24 +7,21 @@ __pycache__/
 *.sqlite3
 *.db
 
-
 .gitignore
 
 # Flask instance folder
 instance/
 
+# Token files
 token
 token.txt
 token.pub
+
+# Virtual environment folders
 venv/
 ENV/
 env/
 .venv/
 
-
+# VSCode settings folder
 .vscode/
-
-
-
-
-
