@@ -7,7 +7,7 @@
     <h2 class="auth-title">Database Users</h2>
     <div class="card mb-4">
         <div class="card-body">
-            <table class="table">
+            <table class="table" id="users-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -16,13 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for user in users %}
-                    <tr>
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.username }}</td>
-                        <td><span class="badge {% if user.role == 'admin' %}bg-danger{% elif user.role == 'manager' %}bg-warning{% else %}bg-info{% endif %}">{{ user.role }}</span></td>
-                    </tr>
-                    {% endfor %}
+                    <!-- Users will be dynamically loaded here -->
                 </tbody>
             </table>
         </div>
@@ -31,4 +25,30 @@
         <a href="{{ url_for('dashboard.admin_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
     </div>
 </div>
-{% endblock %} 
+
+<script>
+    // Fetch the users from the API when the page loads
+    fetch('/api/view_users', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + 'your_jwt_token'  // If you're using JWT for authentication
+        }
+    })
+    .then(response => response.json())
+    .then(users => {
+        const tbody = document.querySelector('#users-table tbody');
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td><span class="badge ${user.role === 'admin' ? 'bg-danger' : user.role === 'manager' ? 'bg-warning' : 'bg-info'}">${user.role}</span></td>
+            `;
+            tbody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching users:', error);
+    });
+</script>
+{% endblock %}

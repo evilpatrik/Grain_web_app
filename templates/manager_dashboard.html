@@ -15,17 +15,16 @@
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Register New Employee</h5>
-            <form method="POST" action="{{ url_for('auth.register_employee') }}">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Employee Username</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Employee Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Register Employee</button>
-            </form>
+            <div class="mb-3">
+                <label for="username" class="form-label">Employee Username</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Employee Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button id="registerBtn" class="btn btn-success w-100">Register Employee</button>
+            <div id="feedback" class="mt-3"></div>
         </div>
     </div>
 
@@ -33,4 +32,32 @@
         <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
     </div>
 </div>
+
+<script>
+    document.getElementById('registerBtn').addEventListener('click', async function () {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const data = {
+            username: username,
+            password: password
+        };
+
+        const response = await fetch('{{ url_for("auth.api_register_employee") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        
+        if (response.ok) {
+            document.getElementById('feedback').innerHTML = `<div class="alert alert-success">${result.message}</div>`;
+        } else {
+            document.getElementById('feedback').innerHTML = `<div class="alert alert-danger">${result.error}</div>`;
+        }
+    });
+</script>
 {% endblock %}
