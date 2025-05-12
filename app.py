@@ -23,7 +23,7 @@ with app.app_context():
     # Create default admin user if not exists
     admin = UserCRUD.get_user_by_username('admin')
     if not admin:
-        admin = UserCRUD(username='admin', role='admin', name='amin', family='kareshi', phone='09051254424', national_id='2920559257')
+        admin = UserCRUD.create_user(username='admin',password='admin', role='admin', name='amin', family='kareshi', phone='09051254424', national_id='2920559257')
         admin.set_password('admin')
         db.session.add(admin)
         db.session.commit()
