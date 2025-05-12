@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, session, flash,jsonify
-from models import db, User
+from database import UserCRUD, db
 from functools import wraps
 from . import auth
 
@@ -30,7 +30,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(username=username).first()
+        user = UserCRUD.get_user_by_username(username)
 
         if user and user.check_password(password):
             session['username'] = username
@@ -55,13 +55,17 @@ def logout():
 @role_required('admin')
 def api_register_manager():
     data = request.get_json()
+    name = data.get('name')
+    family = data.get('family')
+    phone = data.get('phone')
+    national_id = data.get('national_id')
     username = data.get('username')
     password = data.get('password')
 
-    if User.query.filter_by(username=username).first():
+    if UserCRUD.get_user_by_username(username):
         return jsonify({'error': 'Username already exists'}), 400
 
-    new_user = User(username=username, role='manager')
+    new_user = UserCRUD(username=username, role='manager', name=name, family=family, phone=phone, national_id=national_id)
     new_user.set_password(password)
     db.session.add(new_user)
     db.session.commit()
@@ -72,13 +76,17 @@ def api_register_manager():
 @role_required('manager')
 def api_register_employee():
     data = request.get_json()
+    name = data.get('name')
+    family = data.get('family')
+    phone = data.get('phone')
+    national_id = data.get('national_id')
     username = data.get('username')
     password = data.get('password')
 
-    if User.query.filter_by(username=username).first():
+    if UserCRUD.get_user_by_username(username):
         return jsonify({'error': 'Username already exists'}), 400
 
-    new_user = User(username=username, role='employee')
+    new_user = UserCRUD(username=username, role='employee', name=name, family=family, phone=phone, national_id=national_id)
     new_user.set_password(password)
     db.session.add(new_user)
     db.session.commit()
@@ -88,8 +96,5 @@ def api_register_employee():
 @login_required
 @role_required('admin')
 def api_view_users():
-    users = User.query.all()
-    return jsonify([
-        {'id': u.id, 'username': u.username, 'role': u.role}
-        for u in users
-    ])
+    users = UserCRUD.get_all_users()
+    return jsonify([u.to_dict() for u in users])
