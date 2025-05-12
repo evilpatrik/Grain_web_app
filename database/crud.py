@@ -56,8 +56,49 @@ class UserCRUD:
         return User.query.filter_by(username=username).first()
     
     @staticmethod
+    def get_employee():
+        employees = User.query.filter_by(role = 'employee').all()
+        return [
+            {
+                'id': user.id,
+                'name': user.name,
+                'family': user.family,
+                'username': user.username,
+                'phone': user.phone,
+                'role': user.role
+            }
+            for user in employees
+        ]
+    
+    @staticmethod
+    def get_manager():
+        managers =User.query.filter_by(role='manager').all()
+        return [
+            {
+                'id': user.id,
+                'name': user.name,
+                'family': user.family,
+                'username': user.username,
+                'phone': user.phone,
+                'role': user.role
+            }
+            for user in managers
+        ]
+    
+    @staticmethod
     def get_all_users():
-        return User.query.all()
+        users = User.query.all()
+        return [
+            {
+                'id': user.id,
+                'name': user.name,
+                'family': user.family,
+                'username': user.username,
+                'phone': user.phone,
+                'role': user.role
+            }
+            for user in users
+        ]
 
     @staticmethod
     def delete_user(user_id):
