@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from models import db, bcrypt, User
+from database import db, bcrypt, UserCRUD
 from blueprints.auth import auth
 from blueprints.dashboard import dashboard
 app = Flask(__name__)
@@ -21,9 +21,9 @@ app.register_blueprint(dashboard)
 with app.app_context():
     db.create_all()
     # Create default admin user if not exists
-    admin = User.query.filter_by(username='admin').first()
+    admin = UserCRUD.get_user_by_username('admin')
     if not admin:
-        admin = User(username='admin', role='admin')
+        admin = UserCRUD(username='admin', role='admin', name='amin', family='kareshi', phone='09051254424', national_id='2920559257')
         admin.set_password('admin')
         db.session.add(admin)
         db.session.commit()
