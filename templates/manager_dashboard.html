@@ -43,7 +43,7 @@
             password: password
         };
 
-        const response = await fetch('{{ url_for("auth.api_register_employee") }}', {
+        const response = await fetch('{{ url_for("dashboard.register_employee") }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

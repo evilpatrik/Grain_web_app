@@ -2,7 +2,7 @@ from database.crud import UserCRUD
 from flask import jsonify,request
 from blueprints.dashboard import dashboard
 from database import db
-from dashboard.routes import login_required, role_required  
+from blueprints.dashboard.routes import login_required, role_required  
 
 @dashboard.route('/api/manager/register-employee', methods=['POST'])
 @login_required
@@ -30,7 +30,6 @@ def register_employee():
         national_id=national_id,
         username=username,
         role='employee',
-        phone=phone
     )
     new_user.set_password(password)
     db.session.add(new_user)
