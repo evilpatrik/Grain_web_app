@@ -29,9 +29,10 @@ def register_employee():
         phone=phone,
         national_id=national_id,
         username=username,
+        password=password,
         role='employee',
     )
-    new_user.set_password(password)
+    
     db.session.add(new_user)
     db.session.commit()
 
