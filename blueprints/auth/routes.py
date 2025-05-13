@@ -72,27 +72,6 @@ def api_register_manager():
     db.session.commit()
     return jsonify({'message': 'Manager registered successfully'}), 201
 
-@auth.route('/api/register_employee', methods=['POST'])
-@login_required
-@role_required('manager')
-def api_register_employee():
-    data = request.get_json()
-    name = data.get('name')
-    family = data.get('family')
-    phone = data.get('phone')
-    national_id = data.get('national_id')
-    username = data.get('username')
-    password = data.get('password')
-
-    if UserCRUD.get_user_by_username(username):
-        return jsonify({'error': 'Username already exists'}), 400
-
-    new_user = UserCRUD(username=username, role='employee', name=name, family=family, phone=phone, national_id=national_id)
-    new_user.set_password(password)
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({'message': 'Employee registered successfully'}), 201
-
 @auth.route('/api/users', methods=['GET'])
 @login_required
 @role_required('admin')
