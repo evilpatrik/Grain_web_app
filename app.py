@@ -28,6 +28,22 @@ with app.app_context():
         db.session.add(admin)
         db.session.commit()
 
+    # Create default manager user if not exists
+    manager = UserCRUD.get_user_by_username('manager')
+    if not manager:
+        manager = UserCRUD.create_user(username='manager', password='manager123', role='manager', name='John', family='Doe', phone='09051254425', national_id='2920559258')
+        manager.set_password('manager123')
+        db.session.add(manager)
+        db.session.commit()
+
+    # Create default employee user if not exists
+    employee = UserCRUD.get_user_by_username('employee')
+    if not employee:
+        employee = UserCRUD.create_user(username='employee', password='employee123', role='employee', name='Jane', family='Smith', phone='09051254426', national_id='2920559259')
+        employee.set_password('employee123')
+        db.session.add(employee)
+        db.session.commit()
+
 # Login route
 @app.route('/')
 def home():
