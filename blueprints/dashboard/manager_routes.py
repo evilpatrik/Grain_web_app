@@ -4,6 +4,41 @@ from blueprints.dashboard import dashboard
 from database import db
 from dashboard.routes import login_required, role_required  
 
+@dashboard.route('/api/manager/register-employee', methods=['POST'])
+@login_required
+@role_required('manager')
+def register_employee():
+    data = request.get_json()
+    name = data.get('name')
+    family = data.get('family')
+    phone = data.get('phone')
+    national_id = data.get('national_id')
+    username = data.get('username')
+    password = data.get('password')
+
+    if UserCRUD.get_user_by_username(username):
+        return jsonify({'error': 'Username already exists'}), 400
+    if UserCRUD.get_user_by_national_id(national_id):
+        return jsonify({'error': 'National ID already exists'}), 400
+    if UserCRUD.get_user_by_phone(phone):
+        return jsonify({'error': 'Phone number already exists'}), 400
+
+    new_user = UserCRUD.create_user(
+        name=name,
+        family=family,
+        phone=phone,
+        national_id=national_id,
+        username=username,
+        role='employee',
+        phone=phone
+    )
+    new_user.set_password(password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({'message': 'Employee registered successfully'}), 201
+
+
 @dashboard.route('/api/manager/employees', methods=['GET'])
 @login_required
 @role_required('manager')
