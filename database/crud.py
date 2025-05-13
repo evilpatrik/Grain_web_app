@@ -56,6 +56,10 @@ class UserCRUD:
         return User.query.filter_by(username=username).first()
     
     @staticmethod
+    def get_user_by_phone(phone):
+        return User.query.filter_by(phone=phone).first()
+    
+    @staticmethod
     def get_employee():
         employees = User.query.filter_by(role = 'employee').all()
         return [
