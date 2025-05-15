@@ -100,3 +100,11 @@ def get_all_products():
     product_dicts = [p.to_dict() for p in products]
     return jsonify(product_dicts)
 
+def generate_csv(data_list, fieldnames):
+    csv_buffer = StringIO()
+    writer = csv.DictWriter(csv_buffer, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerows(data_list)
+    return csv_buffer.getvalue()
+
+
