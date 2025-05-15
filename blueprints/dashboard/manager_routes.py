@@ -108,3 +108,21 @@ def generate_csv(data_list, fieldnames):
     return csv_buffer.getvalue()
 
 
+@dashboard.route('/api/manager/backup/product')
+@login_required
+@role_required('manager')
+def backup_product():
+    products = ProductCRUD.get_all_products()
+    product_dicts = [p.to_dict() for p in products]
+    if not product_dicts:
+        product_dicts = [{}]  # Avoid crash on empty list
+
+    csv_data = generate_csv(product_dicts, fieldnames=product_dicts[0].keys())
+
+    memory_file = BytesIO()
+    with ZipFile(memory_file, 'w') as zipf:
+        zipf.writestr('products_backup.csv', csv_data)
+
+    memory_file.seek(0)
+    return send_file(memory_file, mimetype='application/zip', as_attachment=True,
+                     download_name='product_backup.zip')
