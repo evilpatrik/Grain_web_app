@@ -128,3 +128,19 @@ class UserCRUD:
         db.session.commit()
         return user
 
+class OrderCRUD ():
+    @staticmethod
+    def Create_Order(name, price, quantity, types, time):
+        from .models import Order  # Import here to avoid circular imports if any
+        new_order = Order(
+            name=name,
+            price=price,
+            quantity=quantity,
+            types=types,
+            time=time,
+        )
+        new_order.total_price(price, quantity)
+        db.session.add(new_order)
+        db.session.commit()
+        return new_order
+    
