@@ -35,8 +35,8 @@ class ProductCRUD:
         db.session.delete(product)
         db.session.commit()
         return True
-
-
+    
+ 
 
 class UserCRUD:
     @staticmethod
@@ -116,4 +116,15 @@ class UserCRUD:
     @staticmethod
     def get_user_by_national_id(national_id):
         return User.query.filter_by(national_id=national_id).first()
+    
+    @staticmethod
+    def update_user(user_id, **kwargs):
+        user = UserCRUD.get_user_by_id(user_id)
+        if not user:
+            return None
+        for key, value in kwargs.items():
+            if hasattr(user, key):
+                setattr(user, key, value)
+        db.session.commit()
+        return user
 
