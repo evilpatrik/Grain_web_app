@@ -54,8 +54,14 @@ class Order(db.Model):
     types = db.Column(db.String(20), nullable=False, default='sell')
     name= db.Column(db.String(80), unique=True, nullable=False)
     quantity= db.Column(db.Integer,nullable=False)
-    price=db.Column(db.Integer,nullable=False)
+    price=db.Column(db.float,nullable=False)
+    total_price=db.Column(db.float, nullable=False)
     time=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    
+
+    def total_price(self,price,quantity):
+        self.total_price=self.price*self.quantity
+
 
     def to_dict(self):
         return {
