@@ -89,3 +89,9 @@ def update_employee(employee_id):
     return jsonify({'message': 'بروزرسانی با موفقیت انجام شد'}),201
 
 
+@dashboard.route('/api/manager/products', methods=['GET'])
+@login_required 
+@role_required('manager')
+def get_all_products():
+    products = ProductCRUD.get_all_products()
+    return jsonify(products)
