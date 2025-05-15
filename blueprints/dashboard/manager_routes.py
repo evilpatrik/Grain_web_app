@@ -1,9 +1,12 @@
 from database.crud import UserCRUD
-from flask import jsonify,request
+from flask import jsonify,request,send_file
 from blueprints.dashboard import dashboard
 from database import db
 from blueprints.dashboard.routes import login_required, role_required  
 from database.crud import ProductCRUD
+from io import BytesIO, StringIO
+from zipfile import ZipFile
+import csv
 
 @dashboard.route('/api/manager/register-employee', methods=['POST'])
 @login_required
@@ -94,4 +97,6 @@ def update_employee(employee_id):
 @role_required('manager')
 def get_all_products():
     products = ProductCRUD.get_all_products()
-    return jsonify(products)
+    product_dicts = [p.to_dict() for p in products]
+    return jsonify(product_dicts)
+
