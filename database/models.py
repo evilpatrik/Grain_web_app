@@ -57,4 +57,12 @@ class Order(db.Model):
     price=db.Column(db.Integer,nullable=False)
     time=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
 
-    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'quantity': self.quantity,
+            'types': self.types,
+            'time': self.time
+        }
