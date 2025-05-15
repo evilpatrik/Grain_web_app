@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+import datetime
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -48,3 +49,12 @@ class Product(db.Model):
             'quantity': self.quantity
         }
 
+class Order(db.Model):
+    id= db.Column(db.integer,primary_key=True)
+    types = db.Column(db.String(20), nullable=False, default='sell')
+    name= db.Column(db.String(80), unique=True, nullable=False)
+    quantity= db.Column(db.Integer,nullable=False)
+    price=db.Column(db.Integer,nullable=False)
+    time=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+
+    
