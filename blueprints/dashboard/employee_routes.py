@@ -13,3 +13,8 @@ def get_employee_orders():
     orders = Order.query.all()
     return jsonify([order.to_dict() for order in orders])
 
+@dashboard.route('/api/employee/products', methods=['GET'])
+def get_employee_products():
+    products = ProductCRUD.get_all_products()
+    return jsonify([product.to_dict() for product in products])
+
