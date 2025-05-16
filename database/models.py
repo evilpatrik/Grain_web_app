@@ -1,13 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+import datetime
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
-    family = db.Column(db.String(80), unique=True, nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    family = db.Column(db.String(80), nullable=False)
     phone = db.Column(db.String(80), unique=True, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128))
@@ -48,3 +49,26 @@ class Product(db.Model):
             'quantity': self.quantity
         }
 
+class Order(db.Model):
+    id= db.Column(db.integer,primary_key=True)
+    types = db.Column(db.String(20), nullable=False, default='sell')
+    name= db.Column(db.String(80), unique=True, nullable=False)
+    quantity= db.Column(db.Integer,nullable=False)
+    price=db.Column(db.float,nullable=False)
+    total_price=db.Column(db.float, nullable=False)
+    time=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    
+
+    def total_price(self,price,quantity):
+        self.total_price=self.price*self.quantity
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'quantity': self.quantity,
+            'types': self.types,
+            'time': self.time
+        }

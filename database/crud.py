@@ -1,4 +1,4 @@
-from .models import db, Product,User
+from .models import db, Product,User,Order
 
 class ProductCRUD:
     @staticmethod
@@ -35,8 +35,8 @@ class ProductCRUD:
         db.session.delete(product)
         db.session.commit()
         return True
-
-
+    
+ 
 
 class UserCRUD:
     @staticmethod
@@ -116,4 +116,39 @@ class UserCRUD:
     @staticmethod
     def get_user_by_national_id(national_id):
         return User.query.filter_by(national_id=national_id).first()
+    
+    @staticmethod
+    def update_user(user_id, **kwargs):
+        user = UserCRUD.get_user_by_id(user_id)
+        if not user:
+            return None
+        for key, value in kwargs.items():
+            if hasattr(user, key):
+                setattr(user, key, value)
+        db.session.commit()
+        return user
 
+class OrderCRUD ():
+    @staticmethod
+    def Create_Order(name, price, quantity, types, time):
+        from .models import Order  # Import here to avoid circular imports if any
+        new_order = Order(
+            name=name,
+            price=price,
+            quantity=quantity,
+            types=types,
+            time=time,
+        )
+        new_order.total_price(price, quantity)
+        db.session.add(new_order)
+        db.session.commit()
+        return new_order
+    
+    @staticmethod
+    def Delete_Order(order_id):
+        order = Order.query.get(order_id)
+        if not order:
+            return False
+        db.session.delete(order)
+        db.session.commit()
+        return True
