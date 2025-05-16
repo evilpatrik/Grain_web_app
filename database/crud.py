@@ -36,6 +36,24 @@ class ProductCRUD:
         db.session.commit()
         return True
     
+    def decrease_quantity(product_id, quantity):
+        product = Product.query.get(product_id)
+        if not product or product.quantity < quantity:
+            return False
+        product.quantity -= quantity
+        db.session.commit()
+        return True
+    
+    
+    def increase_quantity(product_id, quantity, price):
+        product = Product.query.get(product_id)
+        if not product:
+            return False
+        product.quantity += quantity
+        product.price = price  # Update the price each time
+        db.session.commit()
+        return True
+
 
     
 
