@@ -41,7 +41,6 @@ def register_manager():
 
     return jsonify({'message': 'manager registered successfully'}), 201
 
-
 @dashboard.route('/api/admin/backup', methods=['GET'])
 @login_required
 @role_required('admin')
