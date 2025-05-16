@@ -36,7 +36,8 @@ class ProductCRUD:
         db.session.commit()
         return True
     
- 
+
+    
 
 class UserCRUD:
     @staticmethod
@@ -144,6 +145,7 @@ class OrderCRUD ():
         db.session.commit()
         return new_order
     
+    
     @staticmethod
     def Delete_Order(order_id):
         order = Order.query.get(order_id)
@@ -152,3 +154,16 @@ class OrderCRUD ():
         db.session.delete(order)
         db.session.commit()
         return True
+    
+    @staticmethod
+    def get_order_by_id(order_id):
+        return Order.query.get(order_id)
+
+    @staticmethod
+    def get_order_by_name(name):
+        return Order.query.filter_by(name=name).first()
+
+    @staticmethod
+    def get_all_orders():
+        return Order.query.all()
+    
