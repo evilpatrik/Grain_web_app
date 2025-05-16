@@ -36,6 +36,7 @@ class ProductCRUD:
         db.session.commit()
         return True
     
+    @staticmethod
     def decrease_quantity(product_id, quantity):
         product = Product.query.get(product_id)
         if not product or product.quantity < quantity:
@@ -43,8 +44,8 @@ class ProductCRUD:
         product.quantity -= quantity
         db.session.commit()
         return True
-    
-    
+
+    @staticmethod
     def increase_quantity(product_id, quantity, price):
         product = Product.query.get(product_id)
         if not product:
@@ -149,8 +150,7 @@ class UserCRUD:
 
 class OrderCRUD ():
     @staticmethod
-    def Create_Order(name, price, quantity, types, time):
-        from .models import Order  # Import here to avoid circular imports if any
+    def create_order(name, price, quantity, types, time):
         new_order = Order(
             name=name,
             price=price,
@@ -165,7 +165,7 @@ class OrderCRUD ():
     
     
     @staticmethod
-    def Delete_Order(order_id):
+    def delete_order(order_id):
         order = Order.query.get(order_id)
         if not order:
             return False
