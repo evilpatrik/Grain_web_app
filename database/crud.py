@@ -1,4 +1,4 @@
-from .models import db, Product,User
+from .models import db, Product,User,Order
 
 class ProductCRUD:
     @staticmethod
@@ -144,3 +144,11 @@ class OrderCRUD ():
         db.session.commit()
         return new_order
     
+    @staticmethod
+    def Delete_Order(order_id):
+        order = Order.query.get(order_id)
+        if not order:
+            return False
+        db.session.delete(order)
+        db.session.commit()
+        return True
