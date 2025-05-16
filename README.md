@@ -20,7 +20,7 @@ A minimal, modern web platform for managing grain inventory and users, built wit
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/yourusername/grains-web-app.git
+git clone https://github.com/evilpatrik/Grain_web_app.git
 cd grains-web-app
 
 python -m venv venv
