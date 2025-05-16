@@ -1,9 +1,9 @@
-from database.crud import UserCRUD
+from database.crud import UserCRUD,ProductCRUD
+from database.models import Order
 from flask import jsonify,request,send_file
 from blueprints.dashboard import dashboard
 from database import db
 from blueprints.dashboard.routes import login_required, role_required  
-from database.crud import ProductCRUD
 from io import BytesIO, StringIO
 from zipfile import ZipFile
 import csv
@@ -126,3 +126,22 @@ def backup_product():
     memory_file.seek(0)
     return send_file(memory_file, mimetype='application/zip', as_attachment=True,
                      download_name='product_backup.zip')
+
+@dashboard.route('/api/manager/backup/order')
+@login_required
+@role_required('manager')
+def backup_order():
+    orders = Order.query.all()
+    order_dicts = [o.to_dict() for o in orders]
+    if not order_dicts:
+        order_dicts = [{}]
+
+    csv_data = generate_csv(order_dicts, fieldnames=order_dicts[0].keys())
+
+    memory_file = BytesIO()
+    with ZipFile(memory_file, 'w') as zipf:
+        zipf.writestr('orders_backup.csv', csv_data)
+
+    memory_file.seek(0)
+    return send_file(memory_file, mimetype='application/zip', as_attachment=True,
+                     download_name='order_backup.zip')
