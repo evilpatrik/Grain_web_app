@@ -1,19 +1,57 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد ادمین</title>
+    <link rel="stylesheet" href="/static/css/employee.css">
+</head>
+<body>
 
-{% block title %}Employee Dashboard - Grains Web App{% endblock %}
+    <!-- اسلایدبار -->
+    <div class="sidebar">
+        <div class="sidebar-inner">
+            <!--    غلات فروش  -->
+            <div class="menu-option" onclick="toggleSellPanel()">فروش غلات</div>
+        </div>
+    </div>
+    
+    <!-- کادر جستجو -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="جستجو...">
+        <button onclick="performSearch()">🔍</button>
+    </div>
+    <div id="searchResults"></div>
 
-{% block content %}
-<div class="auth-container">
-    <h2 class="auth-title">Employee Dashboard</h2>
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">Welcome, {{ session.username }}!</h5>
-            <p class="card-text">Role: Employee</p>
+    <!-- فهرست اصلی -->
+    <div class="manager-overlay">
+        <span class="menu-icon">☰</span>
+        <span class="menu-text">فهرست اصلی</span>
+    </div>
+
+
+    <!-- تاریخ و ساعت -->
+    <div class="datetime">
+        <div id="weekday"></div>
+        <div id="shamsi-date"></div>
+        <div id="clock"></div>
+    </div>
+
+    <!-- کاربر فعال -->
+    <div class="user-dropdown">
+        <div class="user-toggle">
+            <span class="user-icon">👤</span>
+            <span class="user-label">ناحیه کاربری :  کارمند</span>
+        </div>
+        <div class="dropdown-menu">
         </div>
     </div>
 
-    <div class="d-grid">
-        <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
-    </div>
-</div>
-{% endblock %}
+    
+
+
+    <!-- کد های جاوااسکریپت -->
+   <script src="/static/js/employee.js"></script>
+
+</body>
+</html>
