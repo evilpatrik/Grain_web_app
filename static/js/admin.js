@@ -95,6 +95,27 @@ function submitRegisterManager() {
         document.getElementById('manager-error').textContent = 'مشکلی در ارتباط با سرور به وجود آمده است.';
         console.error(err);
     });
+    
+    
+    
 }
+    //بک آپ
+    function showBackupPanel() {
+        document.getElementById("backup-panel").style.display = "block";
+    }
 
+    function hideBackupPanel() {
+        document.getElementById("backup-panel").style.display = "none";
+    }
 
+    function confirmBackup() {
+        // ساخت یک لینک مخفی برای دانلود فایل بکاپ
+        const link = document.createElement('a');
+        link.href = '/api/admin/backup';
+        link.download = 'project_backup.zip';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        hideBackupPanel(); // بستن پنل بعد از کلیک
+    }
