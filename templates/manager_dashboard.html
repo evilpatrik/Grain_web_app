@@ -1,63 +1,51 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد ادمین</title>
+    <link rel="stylesheet" href="/static/css/manager.css">
+</head>
+<body>
 
-{% block title %}Manager Dashboard - Grains Web App{% endblock %}
+    <!-- اسلایدبار -->
+    <div class="sidebar">
+        <div class="sidebar-inner">
+        </div>
+    </div>
+    
+    <!-- کادر جستجو -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="جستجو...">
+        <button onclick="performSearch()">🔍</button>
+    </div>
+    <div id="searchResults"></div>
 
-{% block content %}
-<div class="auth-container" style="max-width: 600px;">
-    <h2 class="auth-title">Manager Dashboard</h2>
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">Welcome, {{ session.username }}!</h5>
-            <p class="card-text">Role: Manager</p>
+    <!-- فهرست اصلی -->
+    <div class="manager-overlay">
+        <span class="menu-icon">☰</span>
+        <span class="menu-text">فهرست اصلی</span>
+    </div>
+
+
+    <!-- تاریخ و ساعت -->
+    <div class="datetime">
+        <div id="weekday"></div>
+        <div id="shamsi-date"></div>
+        <div id="clock"></div>
+    </div>
+
+    <!-- کاربر فعال -->
+    <div class="user-dropdown">
+        <div class="user-toggle">
+            <span class="user-icon">👤</span>
+            <span class="user-label">ناحیه کاربری :  ادمین</span>
+        </div>
+        <div class="dropdown-menu">
         </div>
     </div>
 
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">Register New Employee</h5>
-            <div class="mb-3">
-                <label for="username" class="form-label">Employee Username</label>
-                <input type="text" class="form-control" id="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Employee Password</label>
-                <input type="password" class="form-control" id="password" required>
-            </div>
-            <button id="registerBtn" class="btn btn-success w-100">Register Employee</button>
-            <div id="feedback" class="mt-3"></div>
-        </div>
-    </div>
+     <!-- کد های جاوااسکریپت -->
+   <script src="/static/js/manager.js"></script>
 
-    <div class="d-grid">
-        <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
-    </div>
-</div>
-
-<script>
-    document.getElementById('registerBtn').addEventListener('click', async function () {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        const data = {
-            username: username,
-            password: password
-        };
-
-        const response = await fetch('{{ url_for("dashboard.register_employee") }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-        
-        if (response.ok) {
-            document.getElementById('feedback').innerHTML = `<div class="alert alert-success">${result.message}</div>`;
-        } else {
-            document.getElementById('feedback').innerHTML = `<div class="alert alert-danger">${result.error}</div>`;
-        }
-    });
-</script>
-{% endblock %}
+</body>
