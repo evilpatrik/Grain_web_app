@@ -156,7 +156,7 @@ body {
     height: 100px;
     top: 35px;
     left: -37px;
-    background-color: rgba(9, 38, 53, 0.702);
+    background-color: rgba(9, 38, 53, 0.902);
     border: 2px solid #FFFBDA;
     border-radius: 5px;
     padding: 10px;
@@ -168,4 +168,65 @@ body {
     position: absolute;
     top: 170px;
     right: 30%;
+}
+
+
+.sell-panel {
+    position: absolute;
+    left: 300px;
+    top: 150px;
+    width: 500px;
+    height: 600px;
+    background-color:rgba(9, 38, 53, 0.702);
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+
+.product-table-wrapper {
+    max-height: 600px;
+    max-width: 500px;
+    overflow-y: auto;
+    border: 1px solid #aeff00;
+    border-radius: 8px;
+    background-color: #001aff;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.product-table th,
+.product-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #bb0000;
+}
+
+.sell-form-panel {
+    position: absolute;
+    left: 80px;
+    top: 100px;
+    background-color: #1e2d3b;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1001;
+}
+.sell-form-panel input {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: none;
 }
