@@ -45,39 +45,7 @@
     </div>
 
     <!-- کد های جاوااسکریپت -->
-    <!-- اسکریپت ساعت و تاریخ -->
-    <script>
-        function updateDateTime() {
-            const now = new Date();
-
-            const days = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
-            const weekday = days[now.getDay()];
-
-            const faDate = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
-            }).formatToParts(now);
-
-            const year = faDate.find(p => p.type === 'year').value;
-            const month = faDate.find(p => p.type === 'month').value;
-            const day = faDate.find(p => p.type === 'day').value;
-
-            const dateStr = `${year}/${month}/${day}`;
-
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            const timeStr = `${hours}:${minutes}:${seconds}`;
-
-            document.getElementById('weekday').textContent = weekday;
-            document.getElementById('shamsi-date').textContent = dateStr;
-            document.getElementById('clock').textContent = timeStr;
-        }
-
-        updateDateTime(); // بار اول
-        setInterval(updateDateTime, 1000); // هر ثانیه
-    </script>
+     <script src="/static/js/admin.js"></script>
 
 </body>
 </html>
