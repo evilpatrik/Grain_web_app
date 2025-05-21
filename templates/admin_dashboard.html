@@ -13,8 +13,20 @@
         <div class="sidebar-inner">
             <!-- ثبت کارمند جدید -->
             <div class="menu-option" onclick="toggleRegisterPanel()">ثبت کارمند جدید</div>
+            <!-- دکمه بکاپ در داشبورد -->
+            <div class="menu-backup" onclick="showBackupPanel()"> دریافت بک‌آپ</div>
         </div>
     </div>
+
+    <!-- پنل تأیید بکاپ -->
+    <div id="backup-panel" class="backup-panel">
+        <h3>آیا مطمئن هستید؟</h3>
+        <div class="backup-buttons">
+            <button onclick="confirmBackup()">تأیید و دانلود</button>
+            <button onclick="hideBackupPanel()">بستن</button>
+        </div>
+    </div>
+
 
     <div id="register-manager-panel" style="display: none;" class="form-panel">
         <h3>ثبت مدیر جدید</h3>
