@@ -11,7 +11,26 @@
     <!-- اسلایدبار -->
     <div class="sidebar">
         <div class="sidebar-inner">
+            <!-- ثبت کارمند جدید -->
+            <div class="menu-option" onclick="toggleRegisterPanel()">ثبت کارمند جدید</div>
         </div>
+    </div>
+
+    <!-- پنل ثبت کارمند جدید  -->
+    <div id="register-employee-panel" style="display: none;" class="form-panel">
+        <h3>ثبت کارمند جدید</h3>
+        <input type="text" id="employee-name" placeholder="نام">
+        <input type="text" id="employee-family" placeholder="نام خانوادگی">
+        <input type="text" id="employee-national-id" placeholder="کد ملی">
+        <input type="text" id="employee-phone" placeholder="شماره تلفن">
+        <input type="text" id="employee-username" placeholder="نام کاربری">
+        <input type="password" id="employee-password" placeholder="رمز عبور">
+        
+        <p id="employee-error" style="color: red;"></p>
+        <p id="employee-success" style="color: green;"></p>
+
+        <button class="save-btn" onclick="submitRegisterEmployee()">ذخیره</button>
+        <button class="close-btn"onclick="toggleRegisterPanel()">بستن</button>
     </div>
     
     <!-- کادر جستجو -->
@@ -39,7 +58,7 @@
     <div class="user-dropdown">
         <div class="user-toggle">
             <span class="user-icon">👤</span>
-            <span class="user-label">ناحیه کاربری :  ادمین</span>
+            <span class="user-label">ناحیه کاربری :  مدیر</span>
         </div>
         <div class="dropdown-menu">
         </div>
