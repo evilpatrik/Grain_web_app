@@ -46,7 +46,36 @@ def buy_product(product_id):
 
     return jsonify({'message': 'سفارش با موفقیت ثبت شد'}), 201
 
+@dashboard.route('/api/emplyee/product/new-buy',methods=['POST']) 
+@login_required
+@role_required('employee')
+def new_buy():
+    
+    data=request.get_json()
+    name=data.get('name')
+    quantity=data.get('quantity')
+    price=data.get('price')
+    if not name or not isinstance(quantity,int):
+        return jsonify({'error': 'Name and quantity (as integer) are required.'}), 400
+    ProductCRUD.create_product(name,price,quantity)
+    
+    new_order = Order(
+        name=name,
+        quantity=quantity,
+        price=price,
+        types='buy'
+    )
+    new_order.calculate_total_price()
+    db.session.add(new_order)
+    db.session.commit()
+
+    return jsonify({'message': 'Item and order added successfully.'}), 201
+
+
+
 @dashboard.route('/api/employee/products/<int:product_id>/sell', methods=['POST'])
+@login_required
+@role_required('employee')
 def sell_product(product_id):
     data = request.get_json()
     try:
