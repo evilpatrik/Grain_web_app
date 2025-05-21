@@ -35,6 +35,32 @@
 
 
 
+        <!-- دکمه فراموشی رمز عبور -->
+    <div>
+        <button class="forgot-password-btn" onclick="showVerifyPanel()">فراموشی رمز عبور؟</button>
+    </div>
+
+    <!-- پنل تأیید هویت -->
+    <div id="verify-panel" class="auth-panel">
+        <h3>تأیید هویت</h3>
+        <input type="text" id="verify-username" placeholder="نام کاربری">
+        <input type="text" id="verify-national-id" placeholder="کد ملی">
+        <button onclick="submitVerification()">تأیید اطلاعات</button>
+        <button onclick="hideVerifyPanel()">بستن</button>
+    </div>
+
+    <!-- پنل تنظیم رمز جدید -->
+    <div id="reset-panel" class="auth-panel">
+        <h3>تنظیم رمز عبور جدید</h3>
+        <input type="password" id="new-password" placeholder="رمز جدید">
+        <input type="password" id="confirm-password" placeholder="تکرار رمز جدید">
+        <button onclick="submitResetPassword()">ذخیره رمز عبور</button>
+        <button onclick="hideResetPanel()">بستن</button>
+    </div>
+
+
+
+
 
     <!-- اسکریپت حذف خودکار پیام‌ها -->
     <script>
@@ -49,6 +75,85 @@
           });
         });
     </script>
+    <script>
+        function showVerifyPanel() {
+            document.getElementById("verify-panel").style.display = "block";
+        }
+
+        function hideVerifyPanel() {
+            document.getElementById("verify-panel").style.display = "none";
+        }
+
+        function showResetPanel() {
+            document.getElementById("reset-panel").style.display = "block";
+        }
+
+        function hideResetPanel() {
+            document.getElementById("reset-panel").style.display = "none";
+        }
+
+        async function submitVerification() {
+            const username = document.getElementById("verify-username").value.trim();
+            const nationalId = document.getElementById("verify-national-id").value.trim();
+
+            if (!username || !nationalId) {
+                alert("لطفاً همه فیلدها را پر کنید");
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/verify-user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, nationalId })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    hideVerifyPanel();
+                    showResetPanel();
+                } else {
+                    alert("نام کاربری یا کد ملی نادرست است");
+                }
+            } catch (err) {
+                alert("خطا در ارتباط با سرور");
+            }
+        }
+
+        async function submitResetPassword() {
+            const pass = document.getElementById("new-password").value;
+            const confirm = document.getElementById("confirm-password").value;
+
+            if (!pass || !confirm) {
+                alert("لطفاً هر دو فیلد را پر کنید");
+                return;
+            }
+
+            if (pass !== confirm) {
+                alert("رمزها مطابقت ندارند");
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ newPassword: pass })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    alert("رمز عبور با موفقیت تغییر کرد");
+                    hideResetPanel();
+                } else {
+                    alert(data.error || "خطا در تغییر رمز عبور");
+                }
+            } catch (err) {
+                alert("خطا در ارتباط با سرور");
+            }
+        }
+    </script>
+
 
 </body>
 </html>
