@@ -1,73 +1,90 @@
 # 🌾 Grains Web App
 
-A simple web-based grain management platform built using **Flask**, with role-based dashboards for **Admins**, **Managers**, and **Employees**.
+A minimal, modern web platform for managing grain inventory and users, built with **Flask**.
 
 ---
 
-## 📁 Features
+## ✨ Features
 
-- 🔐 User Authentication (Login / Logout)
-- 👤 Role-based Access Control (`admin`, `manager`, `employee`)
-- 🧑‍💼 Admin: View all users
-- 📦 Manager & Employee: Custom dashboards
-- 🔑 Forgot Password with a secret question (favorite pet)
-- ✅ Clean project structure using Flask Blueprints
+- 🔐 **Authentication**: Secure login/logout
+- 👤 **Role-based Dashboards**: `admin`, `manager`, `employee`
+- 👥 **User Management**: Register managers/employees, view all users
+- 📦 **Product Management**: Add, update, buy, sell, and list products
+- 🧾 **Order Management**: Record buy/sell orders, view order history
+- 💾 **Backup**: Download CSV/ZIP backups for products and orders
+- 🔑 **Password Reset**: Secure password recovery with verification
+- 🗂️ **Clean Structure**: Flask Blueprints, SQLAlchemy models
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the Repository
+## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/yourusername/grains-web-app.git
+git clone https://github.com/evilpatrik/Grain_web_app.git
 cd grains-web-app
 
-///////////////////////////////
-
-2. Create & Activate Virtual Environment
-
 python -m venv venv
-# On Windows
-venv\Scripts\activate
-# On Mac/Linux
-source venv/bin/activate
-
- _________________________
-|________________________|
-
-3. Install Dependencies
+venv\Scripts\activate  # On Windows
+# or
+source venv/bin/activate  # On Mac/Linux
 
 pip install -r requirements.txt
 
+python app.py
+```
 
-4. Run the app
-run app.py
+Open [http://localhost:5000/login](http://localhost:5000/login) in your browser.
 
-Open your browser and go to:
-👉 http://localhost:5000/login
+---
 
+## 👤 Default Users
 
+| Role      | Username   | Password     |
+|-----------|------------|-------------|
+| Admin     | admin      | admin       |
+| Manager   | manager    | manager123  |
+| Employee  | employee   | employee123 |
 
-👤 Default Admin Login
-Username	Password
----------------------
-admin	    admin
+---
 
+## 🗂️ Project Structure
 
-
-🗂️ Project Structure
-
+```
 grains-web-app/
 │
-├── app.py                 # App factory and entry point
-├── blueprints/            # Modularized routes
-│   ├── auth/              # Auth routes (login, forgot, etc.)
-│   └── dashboard/         # Role-based dashboards
-│
-├── models.py              # SQLAlchemy models
-├── templates/             # Jinja2 HTML templates
-│
-├── static/                # CSS, JS, images (if needed)
-├── requirements.txt       # Python dependencies
-└── README.md              # You're here!
+├── app.py                  # App entry point
+├── blueprints/             # Modular routes (auth, dashboard)
+│   ├── auth/
+│   └── dashboard/
+├── database/               # Models & CRUD logic
+├── templates/              # HTML templates
+├── static/                 # CSS, images
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 📚 Usage Highlights
+
+- **Admins**: Register/view managers, backup project, view all users
+- **Managers**: Register/view employees, manage products, backup data
+- **Employees**: Buy/sell products, add new products, view orders
+
+---
+
+## 🛠️ Tech Stack
+
+- Python, Flask, Flask-SQLAlchemy, Flask-Bcrypt, Flask-Migrate
+- Bootstrap 5 (UI)
+
+---
+
+## 💡 Tips
+
+- Use the built-in backup features to save your data.
+- For database changes, use Flask-Migrate to keep your data safe.
+
+---
+
+Enjoy managing your grains! 🌾
