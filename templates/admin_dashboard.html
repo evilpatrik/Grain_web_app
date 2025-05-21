@@ -11,8 +11,28 @@
     <!-- اسلایدبار -->
     <div class="sidebar">
         <div class="sidebar-inner">
+            <!-- ثبت کارمند جدید -->
+            <div class="menu-option" onclick="toggleRegisterPanel()">ثبت کارمند جدید</div>
         </div>
     </div>
+
+    <div id="register-manager-panel" style="display: none;" class="form-panel">
+        <h3>ثبت مدیر جدید</h3>
+        <input type="text" id="manager-name" placeholder="نام">
+        <input type="text" id="manager-family" placeholder="نام خانوادگی">
+        <input type="text" id="manager-national-id" placeholder="کد ملی">
+        <input type="text" id="manager-phone" placeholder="شماره تلفن">
+        <input type="text" id="manager-username" placeholder="نام کاربری">
+        <input type="password" id="manager-password" placeholder="رمز عبور">
+        
+        <p id="manager-error" style="color: red;"></p>
+        <p id="manager-success" style="color: green;"></p>
+
+        <button class="save-btn" onclick="submitRegisterManager()">ذخیره</button>
+        <button class="close-btn"onclick="toggleRegisterPanel()">بستن</button>
+    </div>
+
+
     
     <!-- کادر جستجو -->
     <div class="search-container">
@@ -43,6 +63,8 @@
         <div class="dropdown-menu">
         </div>
     </div>
+
+
 
     <!-- کد های جاوااسکریپت -->
      <script src="/static/js/admin.js"></script>
