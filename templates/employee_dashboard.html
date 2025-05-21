@@ -15,6 +15,35 @@
             <div class="menu-option" onclick="toggleSellPanel()">فروش غلات</div>
         </div>
     </div>
+
+        <!-- پنل فروش غلات -->
+    <div id="sell-panel" class="sell-panel" style="display: none;">
+        <h3>لیست محصولات</h3>
+        <div class="product-table-wrapper">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>نام</th>
+                        <th>(تومان)قیمت</th>
+                        <th>(Kg)موجودی</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <!-- ردیف‌ها توسط جاوااسکریپت ساخته می‌شوند -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- فرم فروش محصول -->
+    <div id="sell-form-panel" class="sell-form-panel" style="display: none;">
+        <h3 id="sell-form-title">فروش محصول</h3>
+        <input type="number" id="sell-quantity" placeholder="مقدار">
+        <button onclick="submitSale()">ثبت فروش</button>
+    </div>
+
     
     <!-- کادر جستجو -->
     <div class="search-container">
