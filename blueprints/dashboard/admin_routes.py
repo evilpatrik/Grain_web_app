@@ -69,3 +69,9 @@ def backup_project():
         as_attachment=True,
         download_name="project_backup.zip"
     )
+@dashboard.route('/api/admin/users', methods=['GET'])
+@login_required
+@role_required('admin')
+def api_view_users():
+    users = UserCRUD.get_all_users()
+    return jsonify([u.to_dict() for u in users])
