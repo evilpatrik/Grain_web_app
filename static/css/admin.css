@@ -246,5 +246,47 @@ body {
     cursor: pointer;
 }
 
+/* پنل بکاپ */
+.backup-panel {
+    display: none;
+    position: fixed;
+    top: 30%;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: #1b2a49;
+    color: white;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 1000;
+}
 
+.backup-panel h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
 
+.backup-buttons button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.backup-buttons button:hover {
+    background-color: #357ABD;
+}
+.menu-backup{
+    color: #FFFBDA;
+    font-size: 20px;
+    z-index: 1;
+    position: absolute;
+    top: 200px;
+    right: 30%;
+
+}
