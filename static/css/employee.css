@@ -161,7 +161,7 @@ body {
     border-radius: 5px;
     padding: 10px;
 }
-.menu-option{
+.menu-sell{
     color: #FFFBDA;
     font-size: 20px;
     z-index: 1;
@@ -194,7 +194,7 @@ body {
     overflow-y: auto;
     border: 1px solid #aeff00;
     border-radius: 8px;
-    background-color: #001aff;
+    background-color: #00ffea;
     padding: 10px;
     margin-top: 10px;
 }
@@ -229,4 +229,100 @@ body {
     margin-bottom: 10px;
     border-radius: 6px;
     border: none;
+}
+
+/*دکمه خرید غلات*/
+.menu-buy{
+    color: #FFFBDA;
+    font-size: 20px;
+    z-index: 1;
+    position: absolute;
+    top: 210px;
+    right: 30%;
+}
+.buy-panel {
+    position: absolute;
+    left: 300px;
+    top: 150px;
+    width: 500px;
+    height: 600px;
+    background-color:rgba(9, 38, 53, 0.702);
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.buy-form-panel {
+    position: absolute;
+    left: 30px;
+    top: 150px;
+    background-color: #1e2d3b;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1001;
+}
+.buy-form-panel input {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+/* پنل لیست سفارشات */
+.menu-orders {
+    color: #FFFBDA;
+    font-size: 20px;
+    z-index: 1;
+    position: absolute;
+    top: 250px;
+    right: 30%;
+}
+
+.orders-panel {
+    position: absolute;
+    left: 180px;
+    top: 150px;
+    width: 700px;
+    height: 400px;
+    max-width: 100%;
+    padding: 20px;
+    background-color: rgb(29, 44, 58,0.9);
+    border-radius: 8px;
+}
+
+.orders-table-wrapper {
+    position:sticky;
+    height: 350px;
+    max-height: 600px; /* ارتفاع محدود با اسکرول عمودی */
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+}
+
+.orders-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 800px; /* برای فعال شدن اسکرول افقی */
+}
+
+.orders-table th,
+.orders-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.orders-table th {
+    background-color: #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
