@@ -107,6 +107,13 @@ def generate_csv(data_list, fieldnames):
     writer.writerows(data_list)
     return csv_buffer.getvalue()
 
+@dashboard.route('/api/manager/orders', methods=['GET'])
+@login_required
+@role_required('manager')
+def get_manager_orders():
+    orders = Order.query.all()
+    return jsonify([order.to_dict() for order in orders])
+
 
 @dashboard.route('/api/manager/backup/product')
 @login_required
