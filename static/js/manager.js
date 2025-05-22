@@ -133,3 +133,40 @@ function downloadOrdersBackup() {
     link.click();
     document.body.removeChild(link);
 }
+
+//لیست محصولات
+function toggleProductsPanel() {
+    const panel = document.getElementById('products-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    fetchProductsList();
+}
+
+function fetchProductsList() {
+    fetch('/api/employee/products')
+        .then(res => res.json())
+        .then(products => {
+            const list = document.getElementById('products-list');
+            list.innerHTML = '';
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.price}</td>
+                `;
+                list.appendChild(row);
+            });
+        })
+        .catch(err => {
+            console.error('خطا در دریافت محصولات:', err);
+        });
+}
+function downloadProductsBackup() {
+    const link = document.createElement('a');
+    link.href = '/api/manager/backup/product';
+    link.download = 'product_backup.zip'; // به صورت اتوماتیک توسط سرور تنظیم می‌شود
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
