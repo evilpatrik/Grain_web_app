@@ -215,6 +215,82 @@ body {
     cursor: pointer;
 }
 
+/* پنل لیست سفارشات */
+.menu-orders {
+    color: #FFFBDA;
+    font-size: 20px;
+    z-index: 1;
+    position: absolute;
+    top: 250px;
+    right: 30%;
+}
 
+.orders-panel {
+    position: absolute;
+    left: 180px;
+    top: 150px;
+    width: 700px;
+    height: 400px;
+    max-width: 100%;
+    padding: 20px;
+    background-color: rgb(29, 44, 58,0.9);
+    border-radius: 8px;
+}
 
+.orders-table-wrapper {
+    position:sticky;
+    height: 320px;
+    max-height: 600px; /* ارتفاع محدود با اسکرول عمودی */
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+}
+
+.orders-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 800px; /* برای فعال شدن اسکرول افقی */
+}
+
+.orders-table th,
+.orders-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.orders-table th {
+    background-color: #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.download-orders-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.download-orders-btn:hover {
+    background-color: #1c5c1f;
+}
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.panel-title {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+}
 
