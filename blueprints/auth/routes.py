@@ -51,34 +51,6 @@ def logout():
     flash('با موفقیت خارج شدید', 'info')
     return redirect(url_for('auth.login'))
 
-@auth.route('/api/register_manager', methods=['POST'])
-@login_required
-@role_required('admin')
-def api_register_manager():
-    data = request.get_json()
-    name = data.get('name')
-    family = data.get('family')
-    phone = data.get('phone')
-    national_id = data.get('national_id')
-    username = data.get('username')
-    password = data.get('password')
-
-    if UserCRUD.get_user_by_username(username):
-        return jsonify({'error': 'Username already exists'}), 400
-
-    new_user = UserCRUD(username=username, role='manager', name=name, family=family, phone=phone, national_id=national_id)
-    new_user.set_password(password)
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({'message': 'Manager registered successfully'}), 201
-
-@auth.route('/api/users', methods=['GET'])
-@login_required
-@role_required('admin')
-def api_view_users():
-    users = UserCRUD.get_all_users()
-    return jsonify([u.to_dict() for u in users])
-
 @auth.route('/api/verify-user', methods=['POST'])
 def verify_user():
     data = request.get_json()
