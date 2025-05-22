@@ -243,4 +243,33 @@ function toggleOrdersPanel() {
         });
 }
 
+//لیست محصولات
+function toggleProductsPanel() {
+    const panel = document.getElementById('products-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    fetchProductsList();
+}
+
+function fetchProductsList() {
+    fetch('/api/employee/products')
+        .then(res => res.json())
+        .then(products => {
+            const list = document.getElementById('products-list');
+            list.innerHTML = '';
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.price}</td>
+                `;
+                list.appendChild(row);
+            });
+        })
+        .catch(err => {
+            console.error('خطا در دریافت محصولات:', err);
+        });
+}
+
 
