@@ -326,3 +326,52 @@ body {
     top: 0;
     z-index: 1;
 }
+
+/* لیست محصولات*/
+.menu-products {
+    color: #FFFBDA;
+    font-size: 20px;
+    z-index: 1;
+    position: absolute;
+    top: 290px;
+    right: 30%;
+}
+.products-panel {
+    position: absolute;
+    left: 180px;
+    top: 150px;
+    width: 700px;
+    height: 400px;
+    max-width: 100%;
+    padding: 20px;
+    background-color: rgb(9, 38, 53,0.9);
+    border-radius: 8px;
+}
+
+.products-table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden; /* اسکرول افقی غیرفعال شد */
+    border: 1px solid #ccc;
+}
+
+.products-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 600px;
+}
+
+.products-table th,
+.products-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.products-table th {
+    background-color: #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
