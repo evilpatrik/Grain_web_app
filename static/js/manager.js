@@ -170,3 +170,54 @@ function downloadProductsBackup() {
     link.click();
     document.body.removeChild(link);
 }
+
+
+//حذف کارمند
+function toggleDeleteEmployeePanel() {
+    const panel = document.getElementById('delete-employee-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    if (panel.style.display === 'block') {
+        fetchEmployeesList(); // فقط وقتی پنل باز می‌شود اطلاعات را بگیر
+    }
+}
+function fetchEmployeesList() {
+    fetch('/api/manager/employees')
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.getElementById('employee-list');
+            tbody.innerHTML = '';
+            data.forEach(emp => {
+                const tr = document.createElement('tr');
+
+                tr.innerHTML = `
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.family}</td>
+                    <td>${emp.username}</td>
+                    <td>${emp.phone}</td>
+                    <td>${emp.role}</td>
+                    <td><button class="delete-btn" onclick="deleteEmployee(${emp.id}, this)">حذف</button></td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+        });
+}
+
+function deleteEmployee(id, btn) {
+    if (!confirm('آیا از حذف این کارمند مطمئن هستید؟')) return;
+
+    fetch(`/api/manager/employees/${id}`, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(result => {
+        if (result.success) {
+            const row = btn.closest('tr');
+            row.remove();
+        } else {
+            alert('خطا در حذف کارمند: ' + (result.error || ''));
+        }
+    });
+}
+
