@@ -13,6 +13,10 @@
         <div class="sidebar-inner">
             <!-- ثبت کارمند جدید -->
             <div class="menu-option" onclick="toggleRegisterPanel()">ثبت کارمند جدید</div>
+            <!--    حذف کارمند  -->
+            <!--    ویرایش کارمند  -->
+            <!--    لیست سفارشات  -->
+            <div class="menu-orders" onclick="toggleOrdersPanel()"> لیست سفارشات</div>
         </div>
     </div>
 
@@ -33,6 +37,32 @@
         <button class="close-btn"onclick="toggleRegisterPanel()">بستن</button>
     </div>
     
+    <!-- پنل لیست سفارشات -->
+    <div id="orders-panel" class="orders-panel" style="display: none;">
+        <div class="panel-header">
+        <h3 class="panel-title">لیست سفارشات</h3>
+            <button class="download-orders-btn" onclick="downloadOrdersBackup()">دانلود لیست سفارشات</button>
+        </div>
+        <div class="orders-table-wrapper">
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>شناسه</th>
+                        <th>عملیات</th>
+                        <th>نام محصول</th>
+                        <th>مقدار</th>
+                        <th>قیمت واحد</th>
+                        <th>جمع کل</th>
+                        <th>زمان</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-list">
+                    <!-- ردیف‌ها توسط جاوااسکریپت پر می‌شوند -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <!-- کادر جستجو -->
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="جستجو...">
