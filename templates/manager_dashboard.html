@@ -16,6 +16,7 @@
             <!--    حذف کارمند  -->
             <div class="menu-delete" onclick="toggleDeleteEmployeePanel()()">حذف کارمند </div>
             <!--    ویرایش کارمند  -->
+            <div class="menu-edit" onclick="toggleEditEmployeePanel()">ویرایش کارمند</div>
             <!--    لیست سفارشات  -->
             <div class="menu-orders" onclick="toggleOrdersPanel()"> لیست سفارشات</div>
             <!--  لیست محصولات -->
@@ -113,6 +114,53 @@
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <!-- پنل اصلی لیست کارمندان برای ویرایش -->
+    <div id="edit-employee-panel" class="edit-employee-panel" style="display: none;">
+    <div class="panel-header">
+        <h3 class="panel-title">لیست کارمندان</h3>
+    </div>
+    <div class="employee-table-wrapper" style="overflow-y: auto; max-height: 400px;">
+        <table class="employee-table">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th>نام کاربری</th>
+            <th>تلفن</th>
+            <th>نقش</th>
+            <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody id="employee-edit-list">
+            <!-- سطرها توسط JS ساخته می‌شوند -->
+        </tbody>
+        </table>
+    </div>
+    </div>
+
+    <!-- پنل فرعی برای ویرایش کارمند -->
+    <div id="edit-employee-form-panel" class="edit-employee-form-panel" style="display: none;">
+    <div class="form-content">
+        <h3>ویرایش اطلاعات کارمند</h3>
+        <form id="edit-employee-form">
+        <input type="hidden" id="edit-id">
+        <label>نام:</label>
+        <input type="text" id="edit-name">
+        <label>نام خانوادگی:</label>
+        <input type="text" id="edit-family">
+        <label>تلفن:</label>
+        <input type="text" id="edit-phone">
+        <label>رمز جدید:</label>
+        <input type="password" id="edit-password">
+        <div class="edit-buttons">
+            <button type="submit" class="save-btn">ذخیره</button>
+            <button type="button" onclick="closeEditFormPanel()">بستن</button>
+        </div>
+        </form>
+    </div>
     </div>
 
     <!-- کادر جستجو -->
