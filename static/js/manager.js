@@ -221,3 +221,68 @@ function deleteEmployee(id, btn) {
     });
 }
 
+//ویرایش کارمند
+function toggleEditEmployeePanel() {
+  const panel = document.getElementById('edit-employee-panel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  if (panel.style.display === 'block') fetchEmployeesForEdit();
+}
+
+function closeEditFormPanel() {
+  document.getElementById('edit-employee-form-panel').style.display = 'none';
+}
+
+function openEditFormPanel(employee) {
+  document.getElementById('edit-id').value = employee.id;
+  document.getElementById('edit-name').value = employee.name;
+  document.getElementById('edit-family').value = employee.family;
+  document.getElementById('edit-phone').value = employee.phone;
+  document.getElementById('edit-password').value = '';
+  document.getElementById('edit-employee-form-panel').style.display = 'block';
+}
+
+function fetchEmployeesForEdit() {
+  fetch('/api/manager/employees')
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.getElementById('employee-edit-list');
+      tbody.innerHTML = '';
+      data.forEach(emp => {
+        const row = `<tr>
+          <td>${emp.id}</td>
+          <td>${emp.name}</td>
+          <td>${emp.family}</td>
+          <td>${emp.username}</td>
+          <td>${emp.phone}</td>
+          <td>${emp.role}</td>
+          <td><button onclick='openEditFormPanel(${JSON.stringify(emp)})'>ویرایش</button></td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', row);
+      });
+    });
+}
+
+// فرم ارسال ویرایش
+const editForm = document.getElementById('edit-employee-form');
+editForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const id = document.getElementById('edit-id').value;
+  const name = document.getElementById('edit-name').value;
+  const family = document.getElementById('edit-family').value;
+  const phone = document.getElementById('edit-phone').value;
+  const password = document.getElementById('edit-password').value;
+
+  fetch(`/api/manager/employees/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, family, phone, password })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message || data.error);
+      if (data.message) {
+        closeEditFormPanel();
+        fetchEmployeesForEdit();
+      }
+    });
+});
