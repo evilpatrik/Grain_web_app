@@ -17,6 +17,8 @@
             <div class="menu-buy" onclick="toggleBuyPanel()">خرید غلات</div>
             <!--    لیست سفارشات  -->
             <div class="menu-orders" onclick="toggleOrdersPanel()"> لیست سفارشات</div>
+            <!-- ✅ دکمه جدید -->
+            <div class="menu-products" onclick="toggleProductsPanel()">لیست محصولات</div> 
         </div>
     </div>
 
@@ -100,6 +102,25 @@
         </div>
     </div>
 
+    <!-- پنل لیست محصولات -->
+    <div id="products-panel" class="products-panel" style="display: none;">
+        <h3>لیست محصولات</h3>
+        <div class="products-table-wrapper">
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>شناسه</th>
+                        <th>نام محصول</th>
+                        <th>مقدار موجودی (کیلوگرم)</th>
+                        <th>قیمت (تومان)</th>
+                    </tr>
+                </thead>
+                <tbody id="products-list">
+                    <!-- داده‌ها توسط جاوااسکریپت اضافه می‌شوند -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- فرم فروش محصول -->
     <div id="sell-form-panel" class="sell-form-panel" style="display: none;">
