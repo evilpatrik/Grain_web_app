@@ -91,3 +91,45 @@ function submitRegisterEmployee() {
         console.error(err);
     });
 }
+
+// پنل لیست سفارشات 
+function toggleOrdersPanel() {
+    const panel = document.getElementById('orders-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+    fetch('/api/manager/orders')
+        .then(res => res.json())
+        .then(orders => {
+            const list = document.getElementById('orders-list');
+            list.innerHTML = '';
+
+            orders.forEach(order => {
+                const date = new Date(order.time);  // زمان درست
+                const formattedDate = date.toLocaleString('fa-IR');  // فرمت فارسی
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.types === 'buy' ? 'خرید' : 'فروش'}</td>
+                    <td>${order.name}</td>
+                    <td>${order.quantity}</td>
+                    <td>${order.price}</td>
+                    <td>${order.total_price}</td>
+                    <td>${formattedDate}</td>
+                `;
+                list.appendChild(row);
+            });
+        })
+        .catch(err => {
+            console.error('خطا در دریافت سفارشات:', err);
+        });
+}
+// پنل لیست سفارشات دانلود
+function downloadOrdersBackup() {
+    const link = document.createElement('a');
+    link.href = '/api/manager/backup/order';
+    link.download = 'order_backup.zip'; // به صورت اتوماتیک توسط سرور تنظیم می‌شود
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
