@@ -74,17 +74,12 @@ def update_employee(employee_id):
     family = data.get('family')
     phone = data.get('phone')
     password = data.get('password')
-    
-    if UserCRUD.get_user_by_phone(phone):
-        return jsonify({'error': 'Phone number already exists'}), 400
 
 
     user.name = name
     user.family = family
     user.phone = phone
     if password:
-        if user.check_password(password):
-            return jsonify({'error': 'رمز جدیدی وارد کنید'}), 400
         user.set_password(password)
     
 
