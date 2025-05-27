@@ -151,7 +151,14 @@ def backup_product():
             with open('database/models.py', 'r') as f:
                 zipf.writestr('database/models.py', f.read())
                 
-
+            # Backup requirements
+            with open('requirements.txt', 'r') as f:
+                zipf.writestr('requirements.txt', f.read())
+                
+            # Backup main application file
+            with open('app.py', 'r') as f:
+                zipf.writestr('app.py', f.read())
+                
         except FileNotFoundError as e:
             # Continue even if some files are missing
             print(f"Warning: Could not backup file - {str(e)}")
