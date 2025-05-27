@@ -27,7 +27,7 @@ def register_employee():
     if UserCRUD.get_user_by_phone(phone):
         return jsonify({'error': 'Phone number already exists'}), 400
 
-        try:
+    try:
         # Validate phone number
         if not phone or len(phone) != 11 or not phone.isdigit():
             return jsonify({'error': 'Phone number must be exactly 11 digits'}), 400
@@ -130,21 +130,39 @@ def get_manager_orders():
 @login_required
 @role_required('manager')
 def backup_product():
+    # Get all data to backup
     products = ProductCRUD.get_all_products()
     product_dicts = [p.to_dict() for p in products]
     if not product_dicts:
         product_dicts = [{}]  # Avoid crash on empty list
 
+    # Generate CSV data
     csv_data = generate_csv(product_dicts, fieldnames=product_dicts[0].keys())
 
+    # Create zip file in memory
     memory_file = BytesIO()
     with ZipFile(memory_file, 'w') as zipf:
+        # Add product data
         zipf.writestr('products_backup.csv', csv_data)
+        
+        # Add additional important files
+        try:
+            # Backup database models
+            with open('database/models.py', 'r') as f:
+                zipf.writestr('database/models.py', f.read())
+                
+
+        except FileNotFoundError as e:
+            # Continue even if some files are missing
+            print(f"Warning: Could not backup file - {str(e)}")
 
     memory_file.seek(0)
-    return send_file(memory_file, mimetype='application/zip', as_attachment=True,
-                     download_name='product_backup.zip')
-
+    return send_file(
+        memory_file,
+        mimetype='application/zip',
+        as_attachment=True,
+        download_name='project_backup.zip'
+    )
 @dashboard.route('/api/manager/backup/order')
 @login_required
 @role_required('manager')
