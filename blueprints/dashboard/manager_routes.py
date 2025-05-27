@@ -32,6 +32,12 @@ def register_employee():
         if not phone or len(phone) != 11 or not phone.isdigit():
             return jsonify({'error': 'Phone number must be exactly 11 digits'}), 400
 
+        # Validate national ID
+        if not national_id or len(national_id) != 10 or not national_id.isdigit():
+            return jsonify({'error': 'National ID must be exactly 10 digits'}), 400
+
+
+
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
