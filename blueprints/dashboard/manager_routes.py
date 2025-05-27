@@ -27,6 +27,14 @@ def register_employee():
     if UserCRUD.get_user_by_phone(phone):
         return jsonify({'error': 'Phone number already exists'}), 400
 
+        try:
+        # Validate phone number
+        if not phone or len(phone) != 11 or not phone.isdigit():
+            return jsonify({'error': 'Phone number must be exactly 11 digits'}), 400
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
     new_user = UserCRUD.create_user(
         name=name,
         family=family,
