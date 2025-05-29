@@ -173,6 +173,9 @@ function downloadProductsBackup() {
 
 
 //حذف کارمند
+function hideDeleteEmployeePanel() {
+    document.getElementById('delete-employee-panel').style.display = 'none';
+}
 function toggleDeleteEmployeePanel() {
     const panel = document.getElementById('delete-employee-panel');
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
