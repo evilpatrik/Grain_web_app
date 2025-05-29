@@ -161,39 +161,19 @@ body {
 }
 
 
-.menu-option{
+.menu-register-manager{
     color: #FFFBDA;
+    cursor: pointer;
     font-size: 20px;
     z-index: 1;
     position: absolute;
     top: 170px;
     right: 30%;
 }
-
-
-
-.new-employee-panel {
-    position: absolute;
-    top: 100px;
-    left: 30px;
-    width: 270px;
-    background-color: rgba(9, 38, 53, 0.9);
-    border: 2px solid #fff9c4;
-    border-radius: 20px;
-    padding: 20px;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    color: white;
-    z-index: 1000;
-}
-
-.new-employee-panel input {
-    padding: 8px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-    font-size: 14px;
+.menu-register-manager:hover{
+    background-color: #ED9455;
+    border-radius: 15px;
+    
 }
 
 .panel-buttons {
@@ -210,6 +190,9 @@ body {
     color: white;
     cursor: pointer;
 }
+.save-btn:hover{
+        background-color: #218a4d;
+}
 
 .close-btn {
     background-color: #e74c3c;
@@ -219,17 +202,24 @@ body {
     color: white;
     cursor: pointer;
 }
+.close-btn:hover{
+    background-color: #a3382c;
+}
+
 .form-panel {
-    background-color: #1e2d3b; /* سرمه‌ای */
+    background-color:rgba(9, 38, 53, 0.802);; /* سرمه‌ای */
     color: white;
     padding: 20px;
     border-radius: 15px;
+    border: 3px solid #FFFBDA; 
     width: 300px;
     position: absolute;
     top: 200px;
     right: 600px;
     z-index: 1000;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    direction: rtl;
+    text-align: right;
 }
 .form-panel input {
     width: 100%;
@@ -237,6 +227,8 @@ body {
     padding: 8px;
     border: none;
     border-radius: 5px;
+    direction: rtl;
+    text-align: right;
 }
 .form-panel button {
     margin: 5px;
