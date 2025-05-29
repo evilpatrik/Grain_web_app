@@ -122,3 +122,19 @@ def sell_product(product_id):
 
     return jsonify({'message': 'فروش با موفقیت ثبت شد'}), 201
 
+
+@dashboard.route('/api/employee/products/search', methods=['GET'])
+def search_products():
+    query = request.args.get('q', '').strip()
+    if not query:
+        return jsonify([])
+    # Prefix matches
+    prefix_matches = Product.query.filter(Product.name.ilike(f"{query}%")).all()
+    # Exact match
+    exact_match = Product.query.filter(Product.name.ilike(query)).first()
+    result = []
+    if exact_match:
+        result.append(exact_match.to_dict())
+    else:
+        result = [p.to_dict() for p in prefix_matches]
+    return jsonify(result)
