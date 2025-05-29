@@ -37,14 +37,34 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(updateDateTime, 1000);
 });
 
+// نمایش پیام هشدار
+function showPanelWarning() {
+    const warning = document.getElementById('panel-warning');
+    warning.textContent = 'ابتدا پنل باز شده را ببندید';
+    setTimeout(() => {
+        warning.textContent = '';
+    }, 3000);
+}
 
-
-
-
+//بررسی باز بودن پنل دیگر
+function isAnyPanelOpen() {
+    return document.getElementById('register-manager-panel').style.display === 'block' ||
+           document.getElementById('backup-panel').style.display === 'block';
+}
 
 function toggleRegisterPanel() {
     const panel = document.getElementById('register-manager-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    const otherPanel = document.getElementById('backup-panel');
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+    if (otherPanel.style.display === 'block') {
+        showPanelWarning();
+        return;
+    }
+    panel.style.display = 'block';
     clearMessages();
 }
 
@@ -99,12 +119,23 @@ function submitRegisterManager() {
     
     
 }
-    //بک آپ
-    function showBackupPanel() {
-        document.getElementById("backup-panel").style.display = "block";
-    }
+//بک آپ
+function showBackupPanel() {
+    const panel = document.getElementById('backup-panel');
+    const otherPanel = document.getElementById('register-manager-panel');
 
-    function hideBackupPanel() {
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+    if (otherPanel.style.display === 'block') {
+        showPanelWarning();
+        return;
+    }
+    panel.style.display = 'block';
+}
+
+function hideBackupPanel() {
         document.getElementById("backup-panel").style.display = "none";
     }
 
@@ -118,4 +149,4 @@ function submitRegisterManager() {
         document.body.removeChild(link);
         
         hideBackupPanel(); // بستن پنل بعد از کلیک
-    }
+}

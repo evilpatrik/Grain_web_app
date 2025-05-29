@@ -242,7 +242,6 @@ body {
 }
 
 /* پنل بکاپ */
-
 .menu-backup{
     color: #FFFBDA;
     font-size: 20px;
@@ -273,4 +272,15 @@ body {
     text-align: center;
     z-index: 1000;
     font-size: 18px;
+}
+.panel-warning{
+    color: #FFFBDA;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    right: 5%;
+    bottom: 10%;
+    width: 150px;
+    background-color: red;
+    border-radius: 10px ;
 }
