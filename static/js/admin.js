@@ -51,7 +51,7 @@ function isAnyPanelOpen() {
     return document.getElementById('register-manager-panel').style.display === 'block' ||
            document.getElementById('backup-panel').style.display === 'block';
 }
-
+//ثبت مدیر جدید
 function toggleRegisterPanel() {
     const panel = document.getElementById('register-manager-panel');
     const otherPanel = document.getElementById('backup-panel');

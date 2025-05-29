@@ -284,3 +284,25 @@ body {
     background-color: red;
     border-radius: 10px ;
 }
+.manager-error-warning{
+    color: #FFFBDA;
+    font-weight: bold;
+    position:fixed;
+    text-align: center;
+    right: 5%;
+    bottom: 10%;
+    width: 150px;
+    background-color: red;
+    border-radius: 10px ;
+}
+.manager-success-warning{
+    color: #FFFBDA;
+    font-weight: bold;
+    position:fixed;
+    text-align: center;
+    right: 5%;
+    bottom: 10%;
+    width: 150px;
+    background-color: #2ecc71;
+    border-radius: 10px ;
+}
