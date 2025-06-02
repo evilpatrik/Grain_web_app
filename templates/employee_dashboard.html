@@ -123,7 +123,7 @@
 
     <!-- پنل لیست محصولات -->
     <div id="products-panel" class="products-panel" style="display: none;">
-        <h3>لیست محصولات</h3>
+        <h3 style="color: #FFFBDA; text-align: center;">لیست محصولات</h3>
         <div class="products-table-wrapper">
             <table class="products-table">
                 <thead>
@@ -135,9 +135,11 @@
                     </tr>
                 </thead>
                 <tbody id="products-list">
-                    <!-- داده‌ها توسط جاوااسکریپت اضافه می‌شوند -->
                 </tbody>
             </table>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button class="close-btn" onclick="hideProductsPanel()">بستن</button>
         </div>
     </div>
 

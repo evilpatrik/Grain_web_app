@@ -258,6 +258,9 @@ function toggleOrdersPanel() {
 }
 
 //لیست محصولات
+function hideProductsPanel() {
+    document.getElementById('products-panel').style.display = 'none';
+}
 function toggleProductsPanel() {
     const panel = document.getElementById('products-panel');
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
