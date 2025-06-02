@@ -127,17 +127,11 @@ function toggleOrdersPanel() {
             console.error('خطا در دریافت سفارشات:', err);
         });
 }
-// پنل لیست سفارشات دانلود
-function downloadOrdersBackup() {
-    const link = document.createElement('a');
-    link.href = '/api/manager/backup/order';
-    link.download = 'order_backup.zip'; // به صورت اتوماتیک توسط سرور تنظیم می‌شود
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
 
 //لیست محصولات
+function hideProductsPanel() {
+    document.getElementById('products-panel').style.display = 'none';
+}
 function toggleProductsPanel() {
     const panel = document.getElementById('products-panel');
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
@@ -169,6 +163,15 @@ function downloadProductsBackup() {
     const link = document.createElement('a');
     link.href = '/api/manager/backup/product';
     link.download = 'product_backup.zip'; // به صورت اتوماتیک توسط سرور تنظیم می‌شود
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+// پنل لیست سفارشات دانلود
+function downloadOrdersBackup() {
+    const link = document.createElement('a');
+    link.href = '/api/manager/backup/order';
+    link.download = 'order_backup.zip'; // به صورت اتوماتیک توسط سرور تنظیم می‌شود
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
