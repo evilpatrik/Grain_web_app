@@ -279,10 +279,10 @@ body {
     position: absolute;
     text-align: center;
     right: 5%;
-    bottom: 10%;
+    top: 11%;
     width: 150px;
     background-color: red;
-    border-radius: 10px ;
+    border-radius: 5px ;
 }
 .manager-error-warning{
     color: #FFFBDA;
@@ -290,10 +290,10 @@ body {
     position:fixed;
     text-align: center;
     right: 5%;
-    bottom: 10%;
+    top: 11%;
     width: 150px;
     background-color: red;
-    border-radius: 10px ;
+    border-radius: 5px ;
 }
 .manager-success-warning{
     color: #FFFBDA;
@@ -301,8 +301,8 @@ body {
     position:fixed;
     text-align: center;
     right: 5%;
-    bottom: 10%;
+    top: 11%;
     width: 150px;
     background-color: #2ecc71;
-    border-radius: 10px ;
+    border-radius: 5px ;
 }

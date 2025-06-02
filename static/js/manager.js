@@ -225,6 +225,10 @@ function deleteEmployee(id, btn) {
 }
 
 //ویرایش کارمند
+function hideEditEmployeePanel() {
+    document.getElementById('edit-employee-panel').style.display = 'none';
+}
+
 function toggleEditEmployeePanel() {
   const panel = document.getElementById('edit-employee-panel');
   panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
@@ -258,7 +262,7 @@ function fetchEmployeesForEdit() {
           <td>${emp.username}</td>
           <td>${emp.phone}</td>
           <td>${emp.role}</td>
-          <td><button onclick='openEditFormPanel(${JSON.stringify(emp)})'>ویرایش</button></td>
+          <td><button class="edit-btn" onclick='openEditFormPanel(${JSON.stringify(emp)})'>ویرایش</button></td>
         </tr>`;
         tbody.insertAdjacentHTML('beforeend', row);
       });
