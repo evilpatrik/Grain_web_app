@@ -24,12 +24,12 @@
 
         <!-- پنل فروش غلات -->
     <div id="sell-panel" class="sell-panel" style="display: none;">
-        <h3>لیست محصولات</h3>
+        <h3 style="color: #FFFBDA;">لیست محصولات</h3>
         <div class="product-table-wrapper">
             <table class="product-table">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th>شناسه</th>
                         <th>نام</th>
                         <th>(تومان)قیمت</th>
                         <th>(Kg)موجودی</th>
@@ -37,17 +37,25 @@
                     </tr>
                 </thead>
                 <tbody id="product-list-sell">
-                    <!-- ردیف‌ها توسط جاوااسکریپت ساخته می‌شوند -->
                 </tbody>
             </table>
         </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button class="close-btn" onclick="hideSellPanel()">بستن</button>
+        </div>
+    </div>
+    <!-- فرم فروش محصول -->
+    <div id="sell-form-panel" class="sell-form-panel" style="display: none;">
+            <h3 id="sell-form-title">فروش محصول</h3>
+            <input type="number" id="sell-quantity" placeholder="مقدار">
+            <button class="save-btn" onclick="submitSale()">ثبت فروش</button>
+            <button class="close-btn" onclick="hideSellFormPanel()">بستن</button>
     </div>
 
         <!-- پنل خرید غلات -->
     <div id="buy-panel" class="buy-panel" style="display: none;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h3>لیست محصولات</h3>
-            <!-- دکمه خرید جدید در سمت چپ -->
             <button onclick="toggleNewBuyForm()" style="margin-left: auto;">➕ خرید جدید</button>
         </div>
 
@@ -63,7 +71,6 @@
                     </tr>
                 </thead>
                 <tbody id="product-list-buy">
-                    <!-- ردیف‌ها توسط جاوااسکریپت ساخته می‌شوند -->
                 </tbody>
             </table>
         </div>
@@ -77,7 +84,14 @@
             <button onclick="submitNewBuy()">ثبت خرید</button>
             <button onclick="hideNewBuyForm()">بستن</button>
         </div>
-    </div>
+        </div>
+        <!-- فرم خرید محصول -->
+        <div id="buy-form-panel" class="buy-form-panel" style="display: none;">
+            <h3 id="buy-form-title">خرید محصول</h3>
+            <input type="number" id="buy-quantity" placeholder="مقدار">
+            <input type="number" id="buy-price" placeholder="قیمت واحد (تومان)">
+            <button onclick="submitBuy()">ثبت خرید</button>
+        </div>
 
     <!-- پنل لیست سفارشات -->
     <div id="orders-panel" class="orders-panel" style="display: none;">
@@ -122,22 +136,6 @@
         </div>
     </div>
 
-    <!-- فرم فروش محصول -->
-    <div id="sell-form-panel" class="sell-form-panel" style="display: none;">
-        <h3 id="sell-form-title">فروش محصول</h3>
-        <input type="number" id="sell-quantity" placeholder="مقدار">
-        <button onclick="submitSale()">ثبت فروش</button>
-    </div>
-
-     <!-- فرم خرید محصول -->
-    <div id="buy-form-panel" class="buy-form-panel" style="display: none;">
-        <h3 id="buy-form-title">خرید محصول</h3>
-        <input type="number" id="buy-quantity" placeholder="مقدار">
-        <input type="number" id="buy-price" placeholder="قیمت واحد (تومان)">
-        <button onclick="submitBuy()">ثبت خرید</button>
-    </div>
-
-    
     <!-- کادر جستجو -->
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="جستجو...">

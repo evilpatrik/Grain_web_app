@@ -39,11 +39,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
-
-
 let selectedProductId = null;
 
+
+//فروش غلات
+function hideSellPanel() {
+    document.getElementById('sell-panel').style.display = 'none';
+}
+function hideSellFormPanel() {
+    document.getElementById('sell-form-panel').style.display = 'none';
+}
 function toggleSellPanel() {
     const panel = document.getElementById('sell-panel');
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
@@ -65,7 +70,7 @@ function fetchProductsSell() {
                     <td>${product.name}</td>
                     <td>${product.price}</td>
                     <td>${product.quantity}</td>
-                    <td><button onclick="openSellForm(${product.id}, '${product.name}')">فروش</button></td>
+                    <td><button class="sell-btn" onclick="openSellForm(${product.id}, '${product.name}')">فروش</button></td>
                 `;
                 list.appendChild(row);
             });

@@ -169,6 +169,29 @@ body {
     color: #FFFBDA;
 
 }
+.save-btn {
+    background-color: #2ecc71;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+.save-btn:hover{
+        background-color: #218a4d;
+}
+
+.close-btn {
+    background-color: #e74c3c;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+.close-btn:hover{
+    background-color: #a3382c;
+}
 /*---------------------------------------------------------------------------------------------------
 /*---------------------------------------------------------------------------------------------------
 /* ثبت کارمند جدید */
@@ -219,29 +242,6 @@ body {
     cursor: pointer;
 }
 
-.save-btn {
-    background-color: #2ecc71;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-}
-.save-btn:hover{
-        background-color: #218a4d;
-}
-
-.close-btn {
-    background-color: #e74c3c;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-}
-.close-btn:hover{
-    background-color: #a3382c;
-}
 /*---------------------------------------------------------------------------------------------------
 /*---------------------------------------------------------------------------------------------------
 /* پنل لیست سفارشات */
@@ -464,12 +464,6 @@ body {
     display: none;
     direction: rtl;
     text-align: right;
-}
-.panel-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #ffffff;
 }
 .panel-header {
     margin-bottom: 10px;
