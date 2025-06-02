@@ -93,6 +93,9 @@ function submitRegisterEmployee() {
 }
 
 // پنل لیست سفارشات 
+function hideOrdersPanel() {
+    document.getElementById('orders-panel').style.display = 'none';
+}
 function toggleOrdersPanel() {
     const panel = document.getElementById('orders-panel');
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
