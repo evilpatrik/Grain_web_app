@@ -52,11 +52,11 @@
             <button class="close-btn" onclick="hideSellFormPanel()">بستن</button>
     </div>
 
-        <!-- پنل خرید غلات -->
+    <!-- پنل خرید غلات -->
     <div id="buy-panel" class="buy-panel" style="display: none;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3>لیست محصولات</h3>
-            <button onclick="toggleNewBuyForm()" style="margin-left: auto;">➕ خرید جدید</button>
+        <div>
+            <h3 style="color: #FFFBDA;">لیست محصولات</h3>
+            <button class="save-btn" onclick="toggleNewBuyForm()" style="position:absolute; top: 10px; left: 25px;">➕ خرید جدید</button>
         </div>
 
         <div class="product-table-wrapper">
@@ -74,24 +74,27 @@
                 </tbody>
             </table>
         </div>
-
-        <!-- فرم خرید جدید -->
-        <div id="new-buy-form-panel" style="display: none; background-color: #f2f2f2; padding: 20px; max-width: 400px; margin: 20px auto; border-radius: 8px;">
-            <h3>خرید محصول جدید</h3>
-            <input type="text" id="new-buy-name" placeholder="نام محصول"><br><br>
-            <input type="number" id="new-buy-price" placeholder="قیمت (تومان)"><br><br>
-            <input type="number" id="new-buy-quantity" placeholder="مقدار (کیلوگرم)"><br><br>
-            <button onclick="submitNewBuy()">ثبت خرید</button>
-            <button onclick="hideNewBuyForm()">بستن</button>
+        <div style="text-align: center; margin-top: 15px;">
+            <button class="close-btn" onclick="hideBuyPanel()">بستن</button>
         </div>
-        </div>
-        <!-- فرم خرید محصول -->
-        <div id="buy-form-panel" class="buy-form-panel" style="display: none;">
-            <h3 id="buy-form-title">خرید محصول</h3>
-            <input type="number" id="buy-quantity" placeholder="مقدار">
-            <input type="number" id="buy-price" placeholder="قیمت واحد (تومان)">
-            <button onclick="submitBuy()">ثبت خرید</button>
-        </div>
+    </div>
+    <!-- فرم خرید محصول -->
+    <div id="buy-form-panel" class="buy-form-panel" style="display: none;">
+        <h3 id="buy-form-title">خرید محصول</h3>
+        <input type="number" id="buy-quantity" placeholder="مقدار">
+        <input type="number" id="buy-price" placeholder="قیمت واحد (تومان)">
+        <button class="save-btn" onclick="submitBuy()">ثبت خرید</button>
+        <button class="close-btn" onclick="hideBuyFormPanel()">بستن</button>
+    </div>
+    <!-- فرم خرید جدید -->
+    <div id="new-buy-form-panel" class="new-buy-form-panel" style="display: none;">
+        <h3>خرید محصول جدید</h3>
+        <input type="text" id="new-buy-name" placeholder="نام محصول"><br><br>
+        <input type="number" id="new-buy-price" placeholder="قیمت (تومان)"><br><br>
+        <input type="number" id="new-buy-quantity" placeholder="مقدار (کیلوگرم)"><br><br>
+        <button class="save-btn" onclick="submitNewBuy()">ثبت خرید</button>
+        <button class="close-btn" onclick="hideNewBuyForm()">بستن</button>
+    </div>    
 
     <!-- پنل لیست سفارشات -->
     <div id="orders-panel" class="orders-panel" style="display: none;">

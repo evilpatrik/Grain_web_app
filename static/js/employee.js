@@ -111,6 +111,12 @@ function submitSale() {
 }
 
 //خرید غلات
+function hideBuyPanel() {
+    document.getElementById('buy-panel').style.display = 'none';
+}
+function hideBuyFormPanel() {
+    document.getElementById('buy-form-panel').style.display = 'none';
+}
 function toggleBuyPanel() {
     const panel = document.getElementById('buy-panel');
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
@@ -131,7 +137,7 @@ function fetchProductsBuy() {
                     <td>${product.name}</td>
                     <td>${product.price}</td>
                     <td>${product.quantity}</td>
-                    <td><button onclick="openBuyForm(${product.id}, '${product.name}')">خرید</button></td>
+                    <td><button class="sell-btn" onclick="openBuyForm(${product.id}, '${product.name}')">خرید</button></td>
                 `;
                 list.appendChild(row);
             });
