@@ -385,23 +385,35 @@ body {
     position: absolute;
     top: 250px;
     right: 30%;
+    cursor: pointer;
+    text-decoration:  #ED9455 underline;
+    text-underline-offset: 5px;
+}
+.menu-orders:hover{
+    background-color: #ED9455;
+    border-radius: 5px;
+    width: 103px;
 }
 
 .orders-panel {
     position: absolute;
     left: 180px;
-    top: 150px;
+    top: 170px;
     width: 700px;
-    height: 400px;
+    height: 420px;
     max-width: 100%;
     padding: 20px;
-    background-color: rgb(29, 44, 58,0.9);
-    border-radius: 8px;
+    background-color:rgba(9, 38, 53, 0.802);
+    border-radius: 15px;
+    border: 3px solid #FFFBDA; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    direction: rtl;
+    text-align: right;
 }
 
 .orders-table-wrapper {
     position:sticky;
-    height: 350px;
+    height: 320px;
     max-height: 600px; /* ارتفاع محدود با اسکرول عمودی */
     overflow-y: auto;
     overflow-x: auto;
@@ -412,6 +424,8 @@ body {
     border-collapse: collapse;
     width: 100%;
     min-width: 800px; /* برای فعال شدن اسکرول افقی */
+    background-color:rgba(9, 38, 53);
+    color: #FFFBDA;
 }
 
 .orders-table th,
@@ -423,12 +437,15 @@ body {
 }
 
 .orders-table th {
-    background-color: #eee;
+    color: #092635;
+    background-color: #7ed4ffcd;
     position: sticky;
     top: 0;
     z-index: 1;
 }
 
+/*---------------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------------------
 /* لیست محصولات*/
 .menu-products {
     color: #FFFBDA;

@@ -98,7 +98,7 @@
 
     <!-- پنل لیست سفارشات -->
     <div id="orders-panel" class="orders-panel" style="display: none;">
-        <h3>لیست سفارشات</h3>
+        <h3 style="color: #FFFBDA; text-align: center;">لیست سفارشات</h3>
         <div class="orders-table-wrapper">
             <table class="orders-table">
                 <thead>
@@ -113,9 +113,11 @@
                     </tr>
                 </thead>
                 <tbody id="orders-list">
-                    <!-- ردیف‌ها توسط جاوااسکریپت پر می‌شوند -->
                 </tbody>
             </table>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button class="close-btn" onclick="hideOrdersPanel()">بستن</button>
         </div>
     </div>
 
