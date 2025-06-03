@@ -109,7 +109,7 @@ body {
 .datetime {
     position: absolute;
     top: 30px;
-    left: 50%;
+    left: 23%;
     height: 30px;
     transform: translateX(-50%);
     background-color: rgba(255, 251, 218, 0.2);
@@ -510,4 +510,44 @@ body {
     position: sticky;
     top: 0;
     z-index: 1;
+}
+
+/*---------------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------------------
+/* پیغام های هشدار   */
+.panel-warning{
+    color: #FFFBDA;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    text-align: center;
+    left: 40%;
+    top:5%;
+    width: 190px;
+    background-color: red;
+    border-radius: 5px ;
+}
+.manager-error-warning{
+    color: #FFFBDA;
+    font-weight: bold;
+    font-size: 20px;
+    position:fixed;
+    text-align: center;
+    left: 40%;
+    top: 5%;
+    width: 190px;
+    background-color: red;
+    border-radius: 5px ;
+}
+.manager-success-warning{
+    color: #FFFBDA;
+    font-weight: bold;
+    font-size: 20px;
+    position:fixed;
+    text-align: center;
+    left: 40%;
+    top: 5%;
+    width: 190px;
+    background-color: #2ecc71;
+    border-radius: 5px ;
 }

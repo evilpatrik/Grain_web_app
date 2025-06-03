@@ -37,10 +37,25 @@ document.addEventListener("DOMContentLoaded", function () {
     updateDateTime();
     setInterval(updateDateTime, 1000);
 });
-
-
 let selectedProductId = null;
 
+
+// نمایش پیام هشدار
+function showEmployeePanelWarning() {
+    const warning = document.getElementById('panel-warning');
+    warning.textContent = 'ابتدا پنل باز شده را ببندید';
+    setTimeout(() => {
+        warning.textContent = '';
+    }, 3000);
+}
+function isAnyPanelOpenForEmployee() {
+    return document.getElementById('sell-panel')?.style.display === 'block' ||
+           document.getElementById('buy-panel')?.style.display === 'block' ||
+           document.getElementById('orders-panel')?.style.display === 'block' ||
+           document.getElementById('products-panel')?.style.display === 'block'||
+           document.getElementById('sell-form-panel')?.style.display === 'block' ||
+           document.getElementById('buy-form-panel')?.style.display === 'block' ;
+}
 
 //فروش غلات
 function hideSellPanel() {
@@ -51,7 +66,18 @@ function hideSellFormPanel() {
 }
 function toggleSellPanel() {
     const panel = document.getElementById('sell-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+
+    if (isAnyPanelOpenForEmployee()) {
+        showEmployeePanelWarning();
+        return;
+    }
+
+    panel.style.display = 'block';
     document.getElementById('sell-form-panel').style.display = 'none';
     fetchProductsSell();
 }
@@ -119,7 +145,18 @@ function hideBuyFormPanel() {
 }
 function toggleBuyPanel() {
     const panel = document.getElementById('buy-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+
+    if (isAnyPanelOpenForEmployee()) {
+        showEmployeePanelWarning();
+        return;
+    }
+
+    panel.style.display = 'block';
     document.getElementById('buy-form-panel').style.display = 'none';
     fetchProductsBuy();
 }
@@ -227,7 +264,19 @@ function hideOrdersPanel() {
 }
 function toggleOrdersPanel() {
     const panel = document.getElementById('orders-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+
+    if (isAnyPanelOpenForEmployee()) {
+        showEmployeePanelWarning();
+        return;
+    }
+
+    panel.style.display = 'block';
+    clearOrdersMessages();
 
     fetch('/api/employee/orders')
         .then(res => res.json())
@@ -236,8 +285,8 @@ function toggleOrdersPanel() {
             list.innerHTML = '';
 
             orders.forEach(order => {
-                const date = new Date(order.time);  // زمان درست
-                const formattedDate = date.toLocaleString('fa-IR');  // فرمت فارسی
+                const date = new Date(order.time);
+                const formattedDate = date.toLocaleString('fa-IR');
 
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -257,14 +306,37 @@ function toggleOrdersPanel() {
         });
 }
 
+function clearOrdersMessages() {
+    // اگر پیغام خطایی نمایش داده می‌شود
+    const warning = document.getElementById('orders-error');
+    if (warning) warning.textContent = '';
+}
+
 //لیست محصولات
 function hideProductsPanel() {
     document.getElementById('products-panel').style.display = 'none';
 }
 function toggleProductsPanel() {
     const panel = document.getElementById('products-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+
+    if (isAnyPanelOpenForEmployee()) {
+        showEmployeePanelWarning();
+        return;
+    }
+
+    panel.style.display = 'block';
+    clearProductsMessages();
     fetchProductsList();
+}
+
+function clearProductsMessages() {
+    const error = document.getElementById('products-error');
+    if (error) error.textContent = '';
 }
 
 function fetchProductsList() {
