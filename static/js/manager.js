@@ -37,9 +37,42 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(updateDateTime, 1000);
 });
 
+
+// نمایش پیام هشدار
+function showPanelWarning() {
+    const warning = document.getElementById('panel-warning');
+    warning.textContent = 'ابتدا پنل باز شده را ببندید';
+    setTimeout(() => {
+        warning.textContent = '';
+    }, 3000);
+}
+//بررسی باز بودن پنل دیگر
+function isAnyPanelOpen() {
+    return (
+        document.getElementById('register-employee-panel').style.display === 'block' ||
+        document.getElementById('delete-employee-panel').style.display === 'block' ||
+        document.getElementById('edit-employee-panel').style.display === 'block' ||
+        document.getElementById('orders-panel').style.display === 'block' ||
+        document.getElementById('products-panel').style.display === 'block'
+    );
+}
+
+
+//ثبت کارمند جدید
 function toggleRegisterPanel() {
     const panel = document.getElementById('register-employee-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    // اگر خودش بازه، ببند
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+    // اگه پنل دیگه‌ای بازه، هشدار بده
+    if (isAnyPanelOpen()) {
+        showPanelWarning();
+        return;
+    }
+    // در غیر این صورت بازش کن
+    panel.style.display = 'block';
     clearMessages();
 }
 
@@ -98,7 +131,19 @@ function hideOrdersPanel() {
 }
 function toggleOrdersPanel() {
     const panel = document.getElementById('orders-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+
+    if (isAnyPanelOpen()) {
+        showPanelWarning();
+        return;
+    }
+
+    panel.style.display = 'block';
+    clearOrdersMessages();
 
     fetch('/api/manager/orders')
         .then(res => res.json())
@@ -107,8 +152,8 @@ function toggleOrdersPanel() {
             list.innerHTML = '';
 
             orders.forEach(order => {
-                const date = new Date(order.time);  // زمان درست
-                const formattedDate = date.toLocaleString('fa-IR');  // فرمت فارسی
+                const date = new Date(order.time);
+                const formattedDate = date.toLocaleString('fa-IR');
 
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -128,14 +173,38 @@ function toggleOrdersPanel() {
         });
 }
 
+function clearOrdersMessages() {
+    // اگر پیغام خطایی نمایش داده می‌شود
+    const warning = document.getElementById('orders-error');
+    if (warning) warning.textContent = '';
+}
+
+
 //لیست محصولات
 function hideProductsPanel() {
     document.getElementById('products-panel').style.display = 'none';
 }
 function toggleProductsPanel() {
     const panel = document.getElementById('products-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+
+    if (isAnyPanelOpen()) {
+        showPanelWarning();
+        return;
+    }
+
+    panel.style.display = 'block';
+    clearProductsMessages();
     fetchProductsList();
+}
+
+function clearProductsMessages() {
+    const error = document.getElementById('products-error');
+    if (error) error.textContent = '';
 }
 
 function fetchProductsList() {
@@ -184,11 +253,28 @@ function hideDeleteEmployeePanel() {
 }
 function toggleDeleteEmployeePanel() {
     const panel = document.getElementById('delete-employee-panel');
-    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    // اگر خودش بازه، ببندش
     if (panel.style.display === 'block') {
-        fetchEmployeesList(); // فقط وقتی پنل باز می‌شود اطلاعات را بگیر
+        panel.style.display = 'none';
+        return;
     }
+    // اگه پنل دیگه‌ای باز باشه، هشدار بده
+    if (isAnyPanelOpen()) {
+        showPanelWarning();
+        return;
+    }
+    panel.style.display = 'block';
+    clearDeleteMessages();
+    fetchEmployeesList();
+
 }
+function clearDeleteMessages() {
+    const errorEl = document.getElementById('delete-error');
+    const successEl = document.getElementById('delete-success');
+    if (errorEl) errorEl.textContent = '';
+    if (successEl) successEl.textContent = '';
+}
+
 function fetchEmployeesList() {
     fetch('/api/manager/employees')
         .then(res => res.json())
@@ -236,10 +322,27 @@ function hideEditEmployeePanel() {
 }
 
 function toggleEditEmployeePanel() {
-  const panel = document.getElementById('edit-employee-panel');
-  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-  if (panel.style.display === 'block') fetchEmployeesForEdit();
+    const panel = document.getElementById('edit-employee-panel');
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        return;
+    }
+    if (isAnyPanelOpen()) {
+        showPanelWarning();
+        return;
+    }
+    panel.style.display = 'block';
+    clearEditEmployeeMessages();
+    fetchEmployeesForEdit(); // دریافت لیست برای ویرایش
 }
+
+function clearEditEmployeeMessages() {
+    const errorEl = document.getElementById('edit-employee-error');
+    const successEl = document.getElementById('edit-employee-success');
+    if (errorEl) errorEl.textContent = '';
+    if (successEl) successEl.textContent = '';
+}
+
 
 function closeEditFormPanel() {
   document.getElementById('edit-employee-form-panel').style.display = 'none';
