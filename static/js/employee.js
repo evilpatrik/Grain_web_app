@@ -361,4 +361,16 @@ function fetchProductsList() {
         });
 }
 
+//ناحیه کاربری فعال
+document.querySelector('.user-toggle').addEventListener('click', () => {
+    const menu = document.getElementById('user-dropdown-menu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+});
+
+function closeUserDropdown() {
+    document.getElementById('user-dropdown-menu').style.display = 'none';
+}
+function logout() {
+    window.location.href = '/login';
+}
 

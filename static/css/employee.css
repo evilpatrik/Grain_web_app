@@ -122,6 +122,9 @@ body {
     gap: 8px;
     z-index: 3;
 }
+
+/*---------------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------------------
 /*ناحیه کاربری*/
 .user-dropdown {
     position: absolute;
@@ -148,9 +151,7 @@ body {
     font-size: 12px;
     font-weight: bold;
 }
-/*پنل ناحیه کاربری*/
 .dropdown-menu {
-    display: none; /* none= مخفی */
     position: absolute;
     width: 200px;
     height: 100px;
@@ -158,9 +159,29 @@ body {
     left: -37px;
     background-color: rgba(9, 38, 53, 0.902);
     border: 2px solid #FFFBDA;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px;
 }
+.dropdown-menu button {
+    display: block;
+    font-size: 15px;
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #ED9455;
+    color: #FFFBDA;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.dropdown-menu button:hover {
+    background-color: #e74c3c;
+}
+
+/*---------------------------------------------------------------------------------------------------
+/*---------------------------------------------------------------------------------------------------
+/*  استایل دکمه بستن و ذخیره   */
 .save-btn {
     background-color: #2ecc71;
     padding: 6px 12px;
