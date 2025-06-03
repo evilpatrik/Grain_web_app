@@ -194,13 +194,15 @@
         <div id="clock"></div>
     </div>
 
-    <!-- کاربر فعال -->
+     <!-- کاربر فعال -->
     <div class="user-dropdown">
         <div class="user-toggle">
             <span class="user-icon">👤</span>
             <span class="user-label">ناحیه کاربری :  مدیر</span>
         </div>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu" id="user-dropdown-menu" style="display: none;">
+            <button onclick="closeUserDropdown()">بستن</button>
+            <button onclick="logout()">خروج از سیستم</button>
         </div>
     </div>
 
