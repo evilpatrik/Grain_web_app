@@ -54,9 +54,6 @@ class ProductCRUD:
         product.price = price  # Update the price each time
         db.session.commit()
         return True
-    @staticmethod
-    def search_products_by_name(query):
-        return Product.query.filter(Product.name.ilike(f"%{query}%")).all()
 
     @staticmethod
     def search_products_by_name(query):
@@ -189,4 +186,3 @@ class OrderCRUD ():
     def get_all_orders():
         return Order.query.all()
     
-
