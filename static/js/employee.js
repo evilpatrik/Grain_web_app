@@ -374,3 +374,34 @@ function logout() {
     window.location.href = '/login';
 }
 
+function performSearch() {
+    const query = document.getElementById('searchInput').value;
+    if (!query) {
+        document.getElementById('searchResults').innerHTML = '';
+        return;
+    }
+    fetch(`/api/employee/products/search?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(products => {
+            if (products.length === 0) {
+                document.getElementById('searchResults').innerHTML = '';
+                toggleProductsPanel();
+                const list = document.getElementById('products-list');
+                list.innerHTML = `<tr><td colspan='4' style='color:red;text-align:center;'>نتیجه‌ای یافت نشد.</td></tr>`;
+                return;
+            }
+            document.getElementById('searchResults').innerHTML = '';
+            toggleProductsPanel();
+            fetchProductsList(products[0].name);
+        })
+        .catch(() => {
+            document.getElementById('searchResults').innerHTML = '<p>خطا در جستجو.</p>';
+        });
+}
+function showProductInList(productName) {
+    document.getElementById('searchInput').value = productName;
+    document.getElementById('searchResults').innerHTML = '';
+    toggleProductsPanel(); // Open the product list panel
+    fetchProductsList(productName); // Pass the name to highlight
+}
+
