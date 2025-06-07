@@ -27,6 +27,22 @@ def register_employee():
     if UserCRUD.get_user_by_phone(phone):
         return jsonify({'error': 'Phone number already exists'}), 400
 
+    try:
+        # Validate phone number
+        if not phone or len(phone) != 11 or not phone.isdigit():
+            return jsonify({'error': 'Phone number must be exactly 11 digits'}), 400
+
+        # Validate national ID
+        if not national_id or len(national_id) != 10 or not national_id.isdigit():
+            return jsonify({'error': 'National ID must be exactly 10 digits'}), 400
+
+        # Validate password
+        if not password or len(password) < 8 or password.isalpha() or password.isdigit():
+            return jsonify({'error': 'Password must be at least 8 characters and contain both letters and numbers'}), 400
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
     new_user = UserCRUD.create_user(
         name=name,
         family=family,
@@ -74,17 +90,12 @@ def update_employee(employee_id):
     family = data.get('family')
     phone = data.get('phone')
     password = data.get('password')
-    
-    if UserCRUD.get_user_by_phone(phone):
-        return jsonify({'error': 'Phone number already exists'}), 400
 
 
     user.name = name
     user.family = family
     user.phone = phone
     if password:
-        if user.check_password(password):
-            return jsonify({'error': 'رمز جدیدی وارد کنید'}), 400
         user.set_password(password)
     
 
@@ -119,21 +130,46 @@ def get_manager_orders():
 @login_required
 @role_required('manager')
 def backup_product():
+    # Get all data to backup
     products = ProductCRUD.get_all_products()
     product_dicts = [p.to_dict() for p in products]
     if not product_dicts:
         product_dicts = [{}]  # Avoid crash on empty list
 
+    # Generate CSV data
     csv_data = generate_csv(product_dicts, fieldnames=product_dicts[0].keys())
 
+    # Create zip file in memory
     memory_file = BytesIO()
     with ZipFile(memory_file, 'w') as zipf:
+        # Add product data
         zipf.writestr('products_backup.csv', csv_data)
+        
+        # Add additional important files
+        try:
+            # Backup database models
+            with open('database/models.py', 'r') as f:
+                zipf.writestr('database/models.py', f.read())
+                
+            # Backup requirements
+            with open('requirements.txt', 'r') as f:
+                zipf.writestr('requirements.txt', f.read())
+                
+            # Backup main application file
+            with open('app.py', 'r') as f:
+                zipf.writestr('app.py', f.read())
+                
+        except FileNotFoundError as e:
+            # Continue even if some files are missing
+            print(f"Warning: Could not backup file - {str(e)}")
 
     memory_file.seek(0)
-    return send_file(memory_file, mimetype='application/zip', as_attachment=True,
-                     download_name='product_backup.zip')
-
+    return send_file(
+        memory_file,
+        mimetype='application/zip',
+        as_attachment=True,
+        download_name='project_backup.zip'
+    )
 @dashboard.route('/api/manager/backup/order')
 @login_required
 @role_required('manager')

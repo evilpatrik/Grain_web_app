@@ -19,6 +19,18 @@ def register_manager():
     username = data.get('username')
     password = data.get('password')
 
+    # Validate phone number (must be exactly 11 digits)
+    if not phone or not phone.isdigit() or len(phone) != 11:
+        return jsonify({'error': 'Phone number must be exactly 11 digits'}), 400
+
+    # Validate national ID (must be exactly 10 digits)
+    if not national_id or not national_id.isdigit() or len(national_id) != 10:
+        return jsonify({'error': 'National ID must be exactly 10 digits'}), 400
+
+    # Validate password (at least 8 characters, must contain both letters and digits)
+    if not password or len(password) < 8 or not re.search(r'[A-Za-z]', password) or not re.search(r'\d', password):
+        return jsonify({'error': 'Password must be at least 8 characters long and contain both letters and numbers'}), 400
+
     if UserCRUD.get_user_by_username(username):
         return jsonify({'error': 'Username already exists'}), 400
     if UserCRUD.get_user_by_national_id(national_id):

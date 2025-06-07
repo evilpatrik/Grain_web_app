@@ -9,8 +9,15 @@ class ProductCRUD:
         return new_product
 
     @staticmethod
-    def get_all_products():
-        return Product.query.all()
+    def get_all_products(sort=None):
+        query = Product.query
+        if sort == 'most':
+            query = query.order_by(Product.quantity.desc())
+        elif sort == 'least':
+            query = query.order_by(Product.quantity.asc())
+        elif sort == 'newest':
+            query = query.order_by(Product.id.desc())
+        return query.all()
 
     @staticmethod
     def get_product_by_id(product_id):
@@ -55,8 +62,9 @@ class ProductCRUD:
         db.session.commit()
         return True
 
-
-    
+    @staticmethod
+    def search_products_by_name(query):
+        return Product.query.filter(Product.name.ilike(f"%{query}%")).all()
 
 class UserCRUD:
     @staticmethod
