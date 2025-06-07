@@ -6,6 +6,7 @@ from database import db
 from blueprints.dashboard import dashboard
 from flask import jsonify,request,send_file
 from database.crud import UserCRUD
+import re
 
 @dashboard.route('/api/admin/register-manager', methods=['POST'])
 @login_required
