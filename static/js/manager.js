@@ -119,10 +119,6 @@ function submitRegisterEmployee() {
             document.getElementById('employee-error').textContent = body.error || 'خطایی رخ داده است.';
         }
     })
-    .catch(err => {
-        document.getElementById('employee-error').textContent = 'مشکلی در ارتباط با سرور به وجود آمده است.';
-        console.error(err);
-    });
 }
 
 // پنل لیست سفارشات 
@@ -132,7 +128,7 @@ function hideOrdersPanel() {
 function toggleOrdersPanel() {
     const panel = document.getElementById('orders-panel');
 
-    if (panel.style.display === 'block') {
+    if (panel.style.display === 'block') { 
         panel.style.display = 'none';
         return;
     }
