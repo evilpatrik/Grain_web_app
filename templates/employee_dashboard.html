@@ -128,6 +128,16 @@
     <div id="products-panel" class="products-panel" style="display: none;">
         <h3 style="color: #FFFBDA; text-align: center;">لیست محصولات</h3>
         <div class="products-table-wrapper">
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-bottom: 10px;">
+                <span style="margin-left: 8px; cursor: pointer;" title="مرتب‌سازی">
+                    <img src="/static/images/sort-icon.png" alt="sort" style="width: 20px; vertical-align: middle;">
+                </span>
+                <select id="product-sort-select" onchange="onProductSortChange()" style="padding: 4px;">
+                    <option value="most">بیشترین مقدار</option>
+                    <option value="least">کمترین مقدار</option>
+                    <option value="newest">جدیدترین</option>
+                </select>
+            </div>
             <table class="products-table">
                 <thead>
                     <tr>
