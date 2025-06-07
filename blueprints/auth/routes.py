@@ -36,7 +36,7 @@ def login():
         if user and user.check_password(password):
             session['username'] = username
             session['role'] = user.role
-            flash(f'Welcome, {username}!', 'success')
+            flash(f'خروج {username} با موفقیت انجام شد', 'success')
 
             return redirect(url_for(f'dashboard.{user.role}_dashboard'))
         else:
