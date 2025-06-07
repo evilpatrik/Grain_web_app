@@ -111,10 +111,6 @@ function submitRegisterManager() {
             document.getElementById('manager-error').textContent = body.error || 'خطایی رخ داده است.';
         }
     })
-    .catch(err => {
-        document.getElementById('manager-error').textContent = 'مشکلی در ارتباط با سرور به وجود آمده است.';
-        console.error(err);
-    });
     
     
     
