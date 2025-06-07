@@ -25,11 +25,6 @@ def search_products():
     products = ProductCRUD.search_products_by_name(query)
     return jsonify([product.to_dict() for product in products])
 
-@dashboard.route('/api/employee/products/search')
-def search_products():
-    query = request.args.get('q', '')
-    products = ProductCRUD.search_products_by_name(query)
-    return jsonify([product.to_dict() for product in products])
 
 @dashboard.route('/api/employee/products/<int:product_id>/buy', methods=['POST'])
 def buy_product(product_id):
@@ -136,18 +131,3 @@ def sell_product(product_id):
     return jsonify({'message': 'فروش با موفقیت ثبت شد'}), 201
 
 
-@dashboard.route('/api/employee/products/search', methods=['GET'])
-def search_products():
-    query = request.args.get('q', '').strip()
-    if not query:
-        return jsonify([])
-    # Prefix matches
-    prefix_matches = Product.query.filter(Product.name.ilike(f"{query}%")).all()
-    # Exact match
-    exact_match = Product.query.filter(Product.name.ilike(query)).first()
-    result = []
-    if exact_match:
-        result.append(exact_match.to_dict())
-    else:
-        result = [p.to_dict() for p in prefix_matches]
-    return jsonify(result)
