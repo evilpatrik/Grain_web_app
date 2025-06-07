@@ -58,8 +58,9 @@ class ProductCRUD:
     def search_products_by_name(query):
         return Product.query.filter(Product.name.ilike(f"%{query}%")).all()
 
-
-    
+    @staticmethod
+    def search_products_by_name(query):
+        return Product.query.filter(Product.name.ilike(f"%{query}%")).all()
 
 class UserCRUD:
     @staticmethod
