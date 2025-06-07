@@ -339,14 +339,18 @@ function clearProductsMessages() {
     if (error) error.textContent = '';
 }
 
-function fetchProductsList() {
-    fetch('/api/employee/products')
+function fetchProductsList(highlightName = null) {
+    const sort = document.getElementById('product-sort-select') ? document.getElementById('product-sort-select').value : 'most';
+    fetch(`/api/employee/products?sort=${sort}`)
         .then(res => res.json())
         .then(products => {
             const list = document.getElementById('products-list');
             list.innerHTML = '';
             products.forEach(product => {
                 const row = document.createElement('tr');
+                if (highlightName && product.name === highlightName) {
+                    row.style.backgroundColor = '#ffeeba';
+                }
                 row.innerHTML = `
                     <td>${product.id}</td>
                     <td>${product.name}</td>
@@ -361,6 +365,9 @@ function fetchProductsList() {
         });
 }
 
+function onProductSortChange() {
+    fetchProductsList();
+}
 //ناحیه کاربری فعال
 document.querySelector('.user-toggle').addEventListener('click', () => {
     const menu = document.getElementById('user-dropdown-menu');
