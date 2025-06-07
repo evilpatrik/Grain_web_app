@@ -9,8 +9,15 @@ class ProductCRUD:
         return new_product
 
     @staticmethod
-    def get_all_products():
-        return Product.query.all()
+    def get_all_products(sort=None):
+        query = Product.query
+        if sort == 'most':
+            query = query.order_by(Product.quantity.desc())
+        elif sort == 'least':
+            query = query.order_by(Product.quantity.asc())
+        elif sort == 'newest':
+            query = query.order_by(Product.id.desc())
+        return query.all()
 
     @staticmethod
     def get_product_by_id(product_id):

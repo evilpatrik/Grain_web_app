@@ -15,7 +15,8 @@ def get_employee_orders():
 
 @dashboard.route('/api/employee/products', methods=['GET'])
 def get_employee_products():
-    products = ProductCRUD.get_all_products()
+    sort = request.args.get('sort')
+    products = ProductCRUD.get_all_products(sort)
     return jsonify([product.to_dict() for product in products])
     
 @dashboard.route('/api/employee/products/search')
