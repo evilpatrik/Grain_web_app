@@ -18,6 +18,12 @@ def get_employee_products():
     products = ProductCRUD.get_all_products()
     return jsonify([product.to_dict() for product in products])
 
+@dashboard.route('/api/employee/products/search')
+def search_products():
+    query = request.args.get('q', '')
+    products = ProductCRUD.search_products_by_name(query)
+    return jsonify([product.to_dict() for product in products])
+
 @dashboard.route('/api/employee/products/<int:product_id>/buy', methods=['POST'])
 def buy_product(product_id):
     data = request.get_json()
