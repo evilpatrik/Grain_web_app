@@ -387,7 +387,11 @@ editForm.addEventListener('submit', function(e) {
   const family = document.getElementById('edit-family').value;
   const phone = document.getElementById('edit-phone').value;
   const password = document.getElementById('edit-password').value;
-
+  const passwordConfirm = document.getElementById('edit-password-confirm').value;
+  if (password && password !== passwordConfirm) {
+    alert('رمز عبور و تکرار آن یکسان نیستند.');
+    return;
+  }
   fetch(`/api/manager/employees/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -395,11 +399,9 @@ editForm.addEventListener('submit', function(e) {
   })
     .then(res => res.json())
     .then(data => {
-      alert(data.message || data.error);
-      if (data.message) {
-        closeEditFormPanel();
-        fetchEmployeesForEdit();
-      }
+      alert(data.message);
+      closeEditFormPanel();
+      fetchEmployeesForEdit();
     });
 });
 
