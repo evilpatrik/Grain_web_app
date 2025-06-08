@@ -60,6 +60,7 @@ function isAnyPanelOpenForEmployee() {
 //فروش غلات
 function hideSellPanel() {
     document.getElementById('sell-panel').style.display = 'none';
+    document.getElementById('sell-form-panel').style.display = 'none';
 }
 function hideSellFormPanel() {
     document.getElementById('sell-form-panel').style.display = 'none';
@@ -139,6 +140,8 @@ function submitSale() {
 //خرید غلات
 function hideBuyPanel() {
     document.getElementById('buy-panel').style.display = 'none';
+    document.getElementById('buy-form-panel').style.display = 'none';
+    document.getElementById('new-buy-form-panel').style.display = 'none';
 }
 function hideBuyFormPanel() {
     document.getElementById('buy-form-panel').style.display = 'none';
@@ -182,6 +185,7 @@ function fetchProductsBuy() {
         .catch(err => console.error('خطا در دریافت محصولات:', err));
 }
 function openBuyForm(productId, productName) {
+    document.getElementById('new-buy-form-panel').style.display = 'none';
     selectedProductId = productId;
     document.getElementById('buy-form-title').textContent = `خرید: ${productName}`;
     document.getElementById('buy-form-panel').style.display = 'block';
@@ -221,6 +225,7 @@ function submitBuy() {
 }
 
 function toggleNewBuyForm() {
+    document.getElementById('buy-form-panel').style.display = 'none';
     document.getElementById('new-buy-form-panel').style.display = 'block';
 }
 
