@@ -113,7 +113,7 @@ function submitRegisterEmployee() {
     .then(response => response.json().then(data => ({ status: response.status, body: data })))
     .then(({ status, body }) => {
         if (status === 201) {
-            document.getElementById('employee-success').textContent = 'مدیر با موفقیت ثبت شد.';
+            document.getElementById('employee-success').textContent = 'کارمند با موفقیت ثبت شد.';
             document.getElementById('register-employee-panel').reset(); // در صورت تمایل فرم را پاک کن
         } else {
             document.getElementById('employee-error').textContent = body.error || 'خطایی رخ داده است.';

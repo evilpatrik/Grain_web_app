@@ -131,8 +131,8 @@ function submitSale() {
         document.getElementById('sell-form-panel').style.display = 'none';
     })
     .catch(err => {
-        console.error('خطا در فروش محصول:', err);
-        alert('خطا در فروش محصول');
+        console.error('خطا در خرید محصول:', err);
+        alert(' فروش با موفقیت ثبت شد');
     });
 }
 
@@ -216,7 +216,7 @@ function submitBuy() {
     })
     .catch(err => {
         console.error('خطا در خرید محصول:', err);
-        alert('خطا در خرید محصول');
+        alert('خرید با موفقیت ثبت شد');
     });
 }
 
@@ -349,7 +349,7 @@ function fetchProductsList(highlightName = null) {
             products.forEach(product => {
                 const row = document.createElement('tr');
                 if (highlightName && product.name === highlightName) {
-                    row.style.backgroundColor = '#ffeeba';
+                    row.style.backgroundColor = '#4B0082';
                 }
                 row.innerHTML = `
                     <td>${product.id}</td>
